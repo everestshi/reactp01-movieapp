@@ -1,0 +1,39 @@
+.main-nav {
+  width: 100%;
+  background-color: #1c1c1c;
+}
+
+.main-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1;
+  display: flex;
+}
+
+.main-nav li {
+  flex: 1;
+}
+
+.main-nav a {
+  color: #fcfcfc;
+  text-decoration: none;
+  display: block;
+  line-height: 50px;
+  font-size: 1.3em;
+  font-weight: bold;
+  padding: 0;
+  text-align: center;
+}
+.main-nav a.active {
+  background-color: rgba(153, 223, 255, 1);
+  color: #333;
+}
+.main-nav li:not(:first-child) a {
+  border-left: 3px solid #e1e1e1;
+}
+.main-nav a:hover,
+.main-nav a:focus,
+.main-nav a:active {
+  background-color: rgba(white, 0.2);
+}

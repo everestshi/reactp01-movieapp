@@ -1,0 +1,187 @@
+/* Resets */
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Type */
+body {
+  font-family: "Roboto", sans-serif;
+  color: #1c1c1c;
+  background-color: #333;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Alatsi", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+}
+
+p {
+  line-height: 1.4;
+}
+
+main {
+  padding: 1rem;
+}
+
+.wrapper {
+  max-width: 700px;
+  min-height: 800px;
+  background-color: #fcfcfc;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 1em;
+  padding: 1.2em;
+  margin: 1em auto;
+  position: relative;
+}
+
+.character-info {
+  border: 2px dotted darken(#e1e1e1, 30);
+  padding: 1em;
+  margin-bottom: 3em;
+}
+
+.credit-info {
+  font-size: 0.7em;
+}
+
+header {
+  background-color: #ffbe98;
+  padding: 1em 1.25em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 84px;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+header h1 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1;
+}
+
+header .user {
+  text-align: right;
+}
+
+ul {
+  list-style: none;
+  line-height: 1.3;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.gallery a {
+  width: 200px;
+}
+
+.gallery-single-item {
+  min-height: 500px;
+}
+.characters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+.characters-grid .character {
+  position: relative;
+  display: grid;
+  grid-template-columns: 8.75em 1fr;
+  padding: 0.625em;
+  border: 0.0625em dotted #ccc;
+  background-color: #fff;
+  box-shadow: 0.125em 0.1875em 0.3125em 0.125em #e1e1e1;
+  border-radius: 0.625em;
+}
+.characters-grid .profile-picture {
+  grid-column: 1;
+  grid-row: 1 / 5;
+  margin-right: 0.625em;
+}
+
+.characters-grid .link-profile {
+  margin-bottom: 1em;
+}
+
+.characters-grid .heart {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  width: 1.875em;
+}
+.character-single {
+  margin-bottom: 1.25em;
+  max-width: 30em;
+}
+.character-single .heart {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  width: 1.875em;
+}
+.character-single .character {
+  position: relative;
+  display: grid;
+  grid-template-columns: 8.75em 1fr;
+  column-gap: 0.625em;
+  padding: 0.625em;
+  border: 0.0625em dotted #ccc;
+  background-color: #fff;
+  box-shadow: 0.125em 0.1875em 0.3125em 0.125em #e1e1e1;
+  border-radius: 0.625em;
+}
+
+footer {
+  padding: 1em 1.25em;
+  border-top: 1px dotted #aeaeae;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-left: -1.25em;
+}
+
+footer p {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1;
+  font-size: x-small;
+  display: block;
+  width: 100%;
+}
