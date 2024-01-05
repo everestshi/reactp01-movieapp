@@ -13,7 +13,7 @@ function PageNotFound(){
 	return (
 		<main>
 			<section>
-				<h2>404 ... : (</h2>
+				<h2>404 ... : </h2>
 				<p>Page not found.</p>
 				<p>Go to <Link to="/">Home</Link> page.</p>
 			</section>

@@ -9,7 +9,7 @@ function PageFavs() {
   const favs = useSelector((state) => state.favs.items);
 
   useEffect(() => {
-    document.title = `${appTitle} - Favs`;
+    document.title = `${appTitle} - Favourite Movies`;
   }, []);
 
   return (

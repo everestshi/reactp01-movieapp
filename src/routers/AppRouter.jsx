@@ -5,7 +5,8 @@ import Header from "../components/Header";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import PageHome from "../pages/PageHome";
-import PageCharacterProfile from "../pages/PageCharacterProfile";
+import PageMovieDetails from "../pages/PageMovieDetails";
+import PageAbout from "../pages/PageAbout";
 import PageFavs from "../pages/PageFavs";
 import PageContact from "../pages/PageContact";
 import PageNotFound from "../pages/PageNotFound";
@@ -20,9 +21,10 @@ function AppRouter() {
         <Routes>
           <Route path="/" exact element={<PageHome />} />
           <Route
-            path="/character-profile/:id"
-            element={<PageCharacterProfile />}
+            path="/movie-details/:id"
+            element={<PageMovieDetails />}
           />
+          <Route path="/about" element={<PageAbout />} />          
           <Route path="/favs" element={<PageFavs />} />
           <Route path="/contact" element={<PageContact />} />
           <Route path="*" element={<PageNotFound />} />

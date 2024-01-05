@@ -1,3 +1,3 @@
-export const appTitle = "Character Directory";
-export const appAuthor = "Josh Solomon";
+export const appTitle = "Welcome To MVDB";
+export const appAuthor = "Alex, Amanda, Everest";
 export const appStorageName = "character-app-favs";
