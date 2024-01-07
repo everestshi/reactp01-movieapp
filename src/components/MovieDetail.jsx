@@ -1,7 +1,7 @@
 import FavButton from './FavButton';
 import { useDispatch } from 'react-redux';
 import { addFav, deleteFav } from '../features/favs/favsSlice';
-import MoviePanel from '../components/MoviePanel';
+import MovieThumbnail from './MovieThumbnail';
 
 function MovieDetail({ movieObj, isFav }) {
   const dispatch = useDispatch();
@@ -15,14 +15,16 @@ function MovieDetail({ movieObj, isFav }) {
   }
 
   return (
-    <div className="movie">
-      <MoviePanel key={movieObj.id} movie={movieObj} isFav={isFav} />
-      <div className="title-and-details">
-        <p>{movieObj.title}</p>
-        <p>{movieObj.vote_average}</p>
-        <p>{movieObj.release_date}</p>
-        <p>{movieObj.genre_ids}</p>
-        <p>{movieObj.overview}</p>
+    <div className="movie-detail">
+      <div className="movie-detail-panel">
+        <MovieThumbnail key={movieObj.id} movie={movieObj} isFav={isFav} />
+        <div className="movie-description">
+          <p>{movieObj.title}</p>
+          <p>{movieObj.vote_average}</p>
+          <p>{movieObj.release_date}</p>
+          <p>{movieObj.genre_ids}</p>
+          <p>{movieObj.overview}</p>
+        </div>
       </div>
       <div className="btn-favourite">
         {isFav ? (

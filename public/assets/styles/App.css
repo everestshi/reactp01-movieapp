@@ -107,14 +107,24 @@ ul {
   margin-bottom: 1.25em;
 }
 
-.movie-panel {
+.movie-detail-panel {
+  display: flex;
+  gap: 20px;
+}
+
+.movie-detail-panel .movie {
+  width: 800px;
+}
+
+.movie-thumbnail {
   position: relative;
   display: inline-block;
 }
 
 .heart {
-  height: 10%;
   position: absolute;
+  margin: 5px;
+  width: 15%;
   right: 0;
 }
 
