@@ -13,7 +13,6 @@ function Movie({ movieObj, profileLink, isFav }) {
 
   function handleFavClick(addToFav, obj) {
     if (addToFav === true) {
-      console.log(obj);
       dispatch(addFav(obj));
     } else {
       dispatch(deleteFav(obj));
@@ -65,13 +64,13 @@ function Movie({ movieObj, profileLink, isFav }) {
       <div className="btn-favourite">
         {isFav ? (
           <FavButton
-            movieObj={movieObj}
+          characterObj={movieObj}
             remove={true}
             handleFavClick={handleFavClick}
           />
         ) : (
           <FavButton
-            movieObj={movieObj}
+          characterObj={movieObj}
             handleFavClick={handleFavClick}
           />
         )}
