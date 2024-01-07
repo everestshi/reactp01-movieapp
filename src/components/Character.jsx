@@ -28,14 +28,14 @@ function Character({ characterObj, profileLink, isFav }) {
       )}
       <div className="profile-picture">
         <img
-          src={`${imageFolderPath}${characterObj.picture}`}
+          src={`${imageFolderPath}${characterObj.poster_path}`}
           alt={characterObj.name}
         />
       </div>
       <div className="title-and-name">
         <p>
           <b>Name: </b>
-          {characterObj.name}
+          {characterObj.original_title}
         </p>
         {!profileLink && (
           <p>
