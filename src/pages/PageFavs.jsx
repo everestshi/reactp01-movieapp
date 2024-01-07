@@ -1,7 +1,7 @@
 // Page Favs
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Character from "../components/Character";
+import Movie from "../components/Movie";
 import { appTitle } from "../globals/globalVariables";
 import { useSelector } from "react-redux";
 
@@ -15,7 +15,7 @@ function PageFavs() {
   return (
     <main>
       <section>
-        <h2>Favourite Characters</h2>
+        <h2>Favourite Movies</h2>
         {favs.length < 1 ? (
           <p>
             No favourite characters. Return to the <Link to="/">home</Link> page
@@ -25,10 +25,11 @@ function PageFavs() {
           <div className="characters-grid">
             {favs.map((singleCharacter, i) => {
               return (
-                <Character
+                <Movie
                   key={i}
-                  characterObj={singleCharacter}
+                  movieObj={singleCharacter}
                   isFav={true}
+                  profileLink = "lfkjg"
                 />
               );
             })}
