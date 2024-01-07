@@ -100,11 +100,32 @@ ul {
   line-height: 1.3;
 }
 
-.movie-grid {
+.movies-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1.25em;
   margin-bottom: 1.25em;
+}
+
+.movie-detail-panel {
+  display: flex;
+  gap: 20px;
+}
+
+.movie-detail-panel .movie {
+  width: 800px;
+}
+
+.movie-thumbnail {
+  position: relative;
+  display: inline-block;
+}
+
+.heart {
+  position: absolute;
+  margin: 5px;
+  width: 15%;
+  right: 0;
 }
 
 footer {

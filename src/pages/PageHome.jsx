@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import { appTitle } from '../globals/globalVariables';
 import { Link } from 'react-router-dom';
-import { appTitle, movieImgBasePath } from '../globals/globalVariables';
+
 import {
   fetchPopularMovies,
   fetchTopRatedMovies,
@@ -9,6 +10,7 @@ import {
   searchMovies,
   fetchMovieGenres
 } from '../data/tmdb-data';
+import MovieThumbnail from '../components/MovieThumbnail';
 
 function PageHome() {
   const [movies, setMovies] = useState([]);
@@ -57,8 +59,8 @@ function PageHome() {
   const movieList = (
     <div className="movies-grid">
       {movies.map((movie) => (
-        <Link key={`${movie.id}`} to={`/movie-details/${movie.id}`}>
-          <img src={movieImgBasePath + movie.poster_path}></img>
+        <Link key={movie.id} to={`/movie-details/${movie.id}`}>
+          <MovieThumbnail movie={movie} />
         </Link>
       ))}
     </div>

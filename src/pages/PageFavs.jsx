@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import MovieDetail from '../components/MovieDetail';
+import MovieThumbnail from '../components/MovieThumbnail';
 import { appTitle } from '../globals/globalVariables';
 import { useSelector } from 'react-redux';
 
@@ -21,10 +21,12 @@ function PageFavs() {
             add some favourite movies.
           </p>
         ) : (
-          <div className="movie-grid">
+          <div className="movies-grid">
             {favs.map((movie) => {
               return (
-                <MovieDetail key={movie.id} movieObj={movie} isFav={true} />
+                <Link key={movie.id} to={`/movie-details/${movie.id}`}>
+                  <MovieThumbnail movie={movie} isFav={true} />
+                </Link>
               );
             })}
           </div>
