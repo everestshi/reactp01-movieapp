@@ -1,11 +1,9 @@
 import FavButton from './FavButton';
 import { useDispatch } from 'react-redux';
 import { addFav, deleteFav } from '../features/favs/favsSlice';
-import { movieImgBasePath } from '../globals/globalVariables';
+import MoviePanel from '../components/MoviePanel';
 
-const imageFolderPath = '/assets/images/';
-
-function Movie({ movieObj, isFav }) {
+function MovieDetail({ movieObj, isFav }) {
   const dispatch = useDispatch();
 
   function handleFavClick(addToFav, obj) {
@@ -18,17 +16,7 @@ function Movie({ movieObj, isFav }) {
 
   return (
     <div className="movie">
-      {isFav && (
-        <div className="heart">
-          <img src={`${imageFolderPath}heart.png`} alt="Heart" />
-        </div>
-      )}
-      <div className="poster">
-        <img
-          src={movieImgBasePath + movieObj.poster_path}
-          alt={movieObj.title}
-        />
-      </div>
+      <MoviePanel key={movieObj.id} movie={movieObj} isFav={isFav} />
       <div className="title-and-details">
         <p>{movieObj.title}</p>
         <p>{movieObj.vote_average}</p>
@@ -51,4 +39,4 @@ function Movie({ movieObj, isFav }) {
   );
 }
 
-export default Movie;
+export default MovieDetail;
