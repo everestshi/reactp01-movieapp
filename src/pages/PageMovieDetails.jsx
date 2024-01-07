@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import Movie from "../components/Movie";
-import { appTitle } from "../globals/globalVariables";
-import isFav from "../utilities/isFav";
-import { useSelector } from "react-redux";
-import {fetchPopularMovies,
-        fetchTopRatedMovies,
-        fetchNowPlayingMovies,
-        fetchUpcomingMovies,
-        searchMovies,
-        fetchMovieGenres,} from "../data/tmdb-data";
+import { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import MovieDetail from '../components/MovieDetail';
+import { appTitle } from '../globals/globalVariables';
+import isFav from '../utilities/isFav';
+import { useSelector } from 'react-redux';
+import {
+  fetchPopularMovies,
+  fetchTopRatedMovies,
+  fetchNowPlayingMovies,
+  fetchUpcomingMovies,
+  searchMovies,
+  fetchMovieGenres
+} from '../data/tmdb-data';
 
 function PageMovieDetails() {
   const favs = useSelector((state) => state.favs.items);
@@ -40,9 +42,8 @@ function PageMovieDetails() {
           </p>
         ) : (
           <div className="movie-single">
-            <Movie
+            <MovieDetail
               movieObj={movieObj}
-              profileLink={false}
               isFav={isFav(favs, null, movieObj.id)}
             />
           </div>
