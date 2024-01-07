@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
-import "../styles/main-nav.css";
+import '../../public/assets/styles/main-nav.css';
 
 const Nav = () => {
   function handleBlurOnClick(e) {
