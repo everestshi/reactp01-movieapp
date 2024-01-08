@@ -1,6 +1,6 @@
 import { movieImgBasePath, imageFolderPath } from '../globals/globalVariables';
 
-function MovieThumbnail({ movie, isFav }) {
+function MovieThumbnail({ movie, isFav, isOnWatchlist }) {
   const favIcon = isFav ? (
     <img src={`${imageFolderPath}heart.png`} alt="Heart" className="heart" />
   ) : null;
@@ -18,7 +18,8 @@ function MovieThumbnail({ movie, isFav }) {
 }
 
 MovieThumbnail.defaultProps = {
-  isFav: false
+  isFav: false,
+  isOnWatchlist: false
 };
 
 export default MovieThumbnail;
