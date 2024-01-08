@@ -121,11 +121,22 @@ ul {
   display: inline-block;
 }
 
-.heart {
+.solid-heart {
   position: absolute;
+  box-sizing: border-box;
   margin: 5px;
-  width: 15%;
   right: 0;
+  /* width: 15%; */
+  color: red;
+}
+
+.outline-heart {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 5px;
+  right: 0;
+  /* width: 15%; */
+  color: lightgrey;
 }
 
 footer {
