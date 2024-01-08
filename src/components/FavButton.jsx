@@ -3,7 +3,6 @@
 function FavButton({ characterObj, remove, handleFavClick }) {
   function handleAddFav() {
     handleFavClick(true, characterObj);
-    console.log("character object is..." + characterObj);
   }
 
   function handleRemoveFav() {

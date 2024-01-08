@@ -20,7 +20,7 @@ const Nav = () => {
           <NavLink to="/favs">Favourites</NavLink>
         </li>
         <li>
-          <NavLink to="/contact">Watch Later</NavLink>
+          <NavLink to="/watchlist">Watch Later</NavLink>
         </li>
       </ul>
     </nav>
