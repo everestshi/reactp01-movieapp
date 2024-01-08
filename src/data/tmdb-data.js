@@ -66,25 +66,25 @@ export const fetchPopularMovies = async () => {
     }
   };
   
-  // Function to search movies by query
-  export const searchMovies = async (query, year) => {
-    const encodedQuery = encodeURIComponent(query);
-    const encodedYear = encodeURIComponent(year);
-  
-    const API_URL = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=${LANGUAGE}&primary_release_year=${encodedYear}&query=${encodedQuery}`;
-  
-    try {
-      const response = await fetch(API_URL);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      return data.results;
-    } catch (error) {
-      console.error('Error searching movies by year:', error);
-      return [];
+// Function to search movies by query (title)
+export const searchMovies = async (query) => {
+  const encodedQuery = encodeURIComponent(query);
+
+  const API_URL = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=${LANGUAGE}&query=${encodedQuery}`;
+
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-  };
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error('Error searching movies by title:', error);
+    return [];
+  }
+};
+
   
   // Function to fetch movie genres
   export const fetchMovieGenres = async () => {
