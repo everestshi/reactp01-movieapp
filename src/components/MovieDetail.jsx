@@ -1,12 +1,29 @@
+import React, { useEffect, useState } from 'react';
 import FavButton from './FavButton';
 import WatchlistButton from './WatchlistButton';
 import { useDispatch } from 'react-redux';
 import { addFav, deleteFav } from '../features/favs/favsSlice';
 import MovieThumbnail from './MovieThumbnail';
+import { fetchMovieGenres } from '../data/tmdb-data';
 import { addWatchlistItem, deleteWatchlistItem } from '../features/favs/watchlistSlice';
 
 function MovieDetail({ movieObj, isFav, isOnWatchlist }) {
   const dispatch = useDispatch();
+  const [genres, setGenres] = useState([]);
+
+  useEffect(() => {
+    const getMovieGenres = async () => {
+      const fetchedGenres = await fetchMovieGenres();
+      setGenres(fetchedGenres);
+    };
+
+    getMovieGenres();
+  }, []);
+
+  const genreNames = genres
+    .filter((genre) => movieObj.genre_ids.includes(genre.id))
+    .map((genre) => genre.name)
+    .join(', ');
 
   function handleFavClick(addToFav, obj) {
     if (addToFav === true) {
@@ -32,7 +49,7 @@ function MovieDetail({ movieObj, isFav, isOnWatchlist }) {
           <p>{movieObj.title}</p>
           <p>{movieObj.vote_average}</p>
           <p>{movieObj.release_date}</p>
-          <p>{movieObj.genre_ids}</p>
+          <p>{genreNames}</p>
           <p>{movieObj.overview}</p>
         </div>
       </div>
