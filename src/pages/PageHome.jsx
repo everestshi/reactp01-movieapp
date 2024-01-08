@@ -39,12 +39,13 @@ function PageHome() {
   useEffect(() => {
     const getMovies = async () => {
       let moviesToFetch = [];
+      let fetchedMovies = [];
 
       if (searchQuery) {
-        moviesToFetch = await searchMovies(searchQuery);
-        setTotalMoviesCount(moviesToFetch.length);
+        fetchedMovies = await searchMovies(searchQuery);
+        setTotalMoviesCount(fetchedMovies.length);
+        moviesToFetch = fetchedMovies.slice(0, displayCount);
       } else {
-        let fetchedMovies = [];
         if (selectedCategory === "popular") {
           fetchedMovies = await fetchPopularMovies();
         } else if (selectedCategory === "topRated") {
