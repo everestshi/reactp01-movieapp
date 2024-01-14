@@ -2,6 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
 import { addFav, deleteFav } from '../features/favs/favsSlice';
+import {
+  addWatchlistItem,
+  deleteWatchlistItem
+} from '../features/favs/watchlistSlice';
 import { movieImgBasePath } from '../globals/globalVariables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
@@ -17,14 +21,19 @@ function MovieThumbnail({ movie }) {
 
   const handleFavClick = () => {
     if (isFav === true) {
-      console.log('Delete Favourite');
       dispatch(deleteFav(movie));
     } else {
-      console.log('Add Favourite');
-
       dispatch(addFav(movie));
     }
   };
+
+  function handleWatchlistClick(addToWatchlist, obj) {
+    if (addToWatchlist === true) {
+      dispatch(addWatchlistItem(obj));
+    } else {
+      dispatch(deleteWatchlistItem(obj));
+    }
+  }
 
   const favIcon = isFav ? (
     <FontAwesomeIcon

@@ -1,19 +1,38 @@
+import React, { useEffect, useState } from 'react';
 import FavButton from './FavButton';
+import WatchlistButton from './WatchlistButton';
 import { useDispatch } from 'react-redux';
-import { addFav, deleteFav } from '../features/favs/favsSlice';
 import MovieThumbnail from './MovieThumbnail';
+import { fetchMovieGenres } from '../data/tmdb-data';
 
-function MovieDetail({ movie }) {
+function MovieDetail({ movieObj }) {
+  const dispatch = useDispatch();
+  const [genres, setGenres] = useState([]);
+
+  useEffect(() => {
+    const getMovieGenres = async () => {
+      const fetchedGenres = await fetchMovieGenres();
+      setGenres(fetchedGenres);
+    };
+
+    getMovieGenres();
+  }, []);
+
+  const genreNames = genres
+    .filter((genre) => movieObj.genre_ids.includes(genre.id))
+    .map((genre) => genre.name)
+    .join(', ');
+
   return (
     <div className="movie-detail">
       <div className="movie-detail-panel">
-        <MovieThumbnail key={movie.id} movie={movie} />
+        <MovieThumbnail key={movieObj.id} movie={movieObj} />
         <div className="movie-description">
-          <p>{movie.title}</p>
-          <p>{movie.vote_average}</p>
-          <p>{movie.release_date}</p>
-          <p>{movie.genre_ids}</p>
-          <p>{movie.overview}</p>
+          <p>{movieObj.title}</p>
+          <p>{movieObj.vote_average}</p>
+          <p>{movieObj.release_date}</p>
+          <p>{genreNames}</p>
+          <p>{movieObj.overview}</p>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import MovieDetail from '../components/MovieDetail';
 import { appTitle } from '../globals/globalVariables';
+
 import { useSelector } from 'react-redux';
 import {
   fetchPopularMovies,
@@ -14,6 +15,7 @@ import {
 
 function PageMovieDetails() {
   const favs = useSelector((state) => state.favs.items);
+  const watchlist = useSelector((state) => state.watchlist.items);
   const { id } = useParams();
   const [movieObj, setMovieObj] = useState(null);
 

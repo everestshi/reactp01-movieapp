@@ -8,7 +8,7 @@ import PageHome from "../pages/PageHome";
 import PageMovieDetails from "../pages/PageMovieDetails";
 import PageAbout from "../pages/PageAbout";
 import PageFavs from "../pages/PageFavs";
-import PageContact from "../pages/PageContact";
+import PageWatchlist from "../pages/PageWatchlist";
 import PageNotFound from "../pages/PageNotFound";
 import { appTitle, appAuthor } from "../globals/globalVariables";
 
@@ -26,7 +26,7 @@ function AppRouter() {
           />
           <Route path="/about" element={<PageAbout />} />          
           <Route path="/favs" element={<PageFavs />} />
-          <Route path="/contact" element={<PageContact />} />
+          <Route path="/watchlist" element={<PageWatchlist />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer author={appAuthor} />
