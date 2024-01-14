@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+
 import { appTitle } from '../globals/globalVariables';
-import { Link } from 'react-router-dom';
 
 import {
   fetchPopularMovies,
@@ -59,9 +59,7 @@ function PageHome() {
   const movieList = (
     <div className="movies-grid">
       {movies.map((movie) => (
-        <Link key={movie.id} to={`/movie-details/${movie.id}`}>
-          <MovieThumbnail movie={movie} />
-        </Link>
+        <MovieThumbnail key={movie.id} movie={movie} />
       ))}
     </div>
   );

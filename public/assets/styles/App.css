@@ -121,21 +121,31 @@ ul {
   display: inline-block;
 }
 
+.heart:hover {
+  font-size: 6vw;
+  max-width: 50px;
+  max-height: 50px;
+}
+
 .solid-heart {
   position: absolute;
   box-sizing: border-box;
-  margin: 5px;
+  margin: 0.5vw;
   right: 0;
-  /* width: 15%; */
+  font-size: 5vw;
+  max-width: 40px;
+  max-height: 40px;
   color: red;
 }
 
 .outline-heart {
   position: absolute;
   box-sizing: border-box;
-  margin: 5px;
+  margin: 0.5vw;
   right: 0;
-  /* width: 15%; */
+  font-size: 5vw;
+  max-width: 40px;
+  max-height: 40px;
   color: lightgrey;
 }
 

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import MovieDetail from '../components/MovieDetail';
 import { appTitle } from '../globals/globalVariables';
-import isFav from '../utilities/isFav';
 import { useSelector } from 'react-redux';
 import {
   fetchPopularMovies,
@@ -42,10 +41,7 @@ function PageMovieDetails() {
           </p>
         ) : (
           <div className="movie-single">
-            <MovieDetail
-              movieObj={movieObj}
-              isFav={isFav(favs, null, movieObj.id)}
-            />
+            <MovieDetail movie={movieObj} />
           </div>
         )}
       </section>
