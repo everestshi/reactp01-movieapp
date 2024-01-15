@@ -17,17 +17,13 @@ function PageWatchlist() {
         <h2>Watchlist</h2>
         {watchlistItems.length < 1 ? (
           <p>
-            No movies have been added to the watchlist. Return to the <Link to="/">home</Link> page to
-            add some movies.
+            No movies have been added to the watchlist. Return to the{' '}
+            <Link to="/">home</Link> page to add some movies.
           </p>
         ) : (
           <div className="movies-grid">
-            {watchlistItems.map((movie) => {
-              return (
-                <Link key={movie.id} to={`/movie-details/${movie.id}`}>
-                  <MovieThumbnail movie={movie} isFav={movie.isFav} isOnWatchlist={true}/>
-                </Link>
-              );
+            {watchlistItems.map((movieObj) => {
+              return <MovieThumbnail key={movieObj.id} movieObj={movieObj} />;
             })}
           </div>
         )}

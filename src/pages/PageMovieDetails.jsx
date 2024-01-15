@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import MovieDetail from '../components/MovieDetail';
 import { appTitle } from '../globals/globalVariables';
-import isFav from '../utilities/isFav';
-import isOnWatchlist from '../utilities/isOnWatchlist';
 import { useSelector } from 'react-redux';
 import {
   fetchPopularMovies,
@@ -16,7 +14,7 @@ import {
 
 function PageMovieDetails() {
   const favs = useSelector((state) => state.favs.items);
-  const watchlist = useSelector((state) => state.watchlist.items)
+  const watchlist = useSelector((state) => state.watchlist.items);
   const { id } = useParams();
   const [movieObj, setMovieObj] = useState(null);
 
@@ -44,11 +42,7 @@ function PageMovieDetails() {
           </p>
         ) : (
           <div className="movie-single">
-            <MovieDetail
-              movieObj={movieObj}
-              isFav={isFav(favs, null, movieObj.id)}
-              isOnWatchlist={isOnWatchlist(watchlist, null, movieObj.id)}
-            />
+            <MovieDetail movieObj={movieObj} />
           </div>
         )}
       </section>

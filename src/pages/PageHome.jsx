@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { appTitle } from "../globals/globalVariables";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { appTitle } from '../globals/globalVariables';
 
 import {
   fetchPopularMovies,
@@ -19,7 +18,6 @@ function PageHome() {
   const [displayCount, setDisplayCount] = useState(12); 
   const [totalMoviesCount, setTotalMoviesCount] = useState(0);
   const [previousCategory, setPreviousCategory] = useState("");
-
 
   const handleSearch = async () => {
     try {
@@ -65,7 +63,6 @@ function PageHome() {
         moviesToFetch = moviesToFetch.slice(0, displayCount);
         setPreviousCategory(selectedCategory); // Update the previous category
       }
-
       setMovies(moviesToFetch);
     };
 
@@ -98,10 +95,8 @@ function PageHome() {
 
   const movieList = (
     <div className="movies-grid">
-      {movies.map((movie) => (
-        <Link key={movie.id} to={`/movie-details/${movie.id}`}>
-          <MovieThumbnail movie={movie} />
-        </Link>
+      {movies.map((movieObj) => (
+        <MovieThumbnail key={movieObj.id} movieObj={movieObj} />
       ))}
     </div>
   );

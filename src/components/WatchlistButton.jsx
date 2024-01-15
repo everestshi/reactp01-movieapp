@@ -1,27 +1,40 @@
-// Fav Button
+import { useDispatch } from 'react-redux';
+import {
+  addWatchlistItem,
+  deleteWatchlistItem
+} from '../features/favs/watchlistSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock as solidClock } from '@fortawesome/free-solid-svg-icons';
+import { faClock as outlineClock } from '@fortawesome/free-regular-svg-icons';
 
-function WatchlistButton({ characterObj, remove, handleWatchlistClick }) {
-  function handleAddWatchlist() {
-    handleWatchlistClick(true, characterObj);
+function WatchlistButton({ movieObj, isOnWatchlist }) {
+  const dispatch = useDispatch();
+
+  function handleWatchlistClick() {
+    if (isOnWatchlist === true) {
+      dispatch(deleteWatchlistItem(movieObj));
+    } else {
+      dispatch(addWatchlistItem(movieObj));
+    }
   }
 
-  function handleRemoveWatchlist() {
-    handleWatchlistClick(false, characterObj);
-  }
-
-  return (
-    <>
-      {remove === false ? (
-        <button onClick={handleAddWatchlist}>Add To Watchlist</button>
-      ) : (
-        <button onClick={handleRemoveWatchlist}>Remove From Watchlist</button>
-      )}
-    </>
+  const watchListBtn = isOnWatchlist ? (
+    <FontAwesomeIcon
+      icon={solidClock}
+      className="clock solid-clock"
+      onClick={handleWatchlistClick}
+    />
+  ) : (
+    <FontAwesomeIcon
+      icon={outlineClock}
+      className="clock outline-clock"
+      onClick={handleWatchlistClick}
+    />
   );
+
+  return <>{watchListBtn}</>;
 }
 
-WatchlistButton.defaultProps = {
-  remove: false,
 };
 
 export default WatchlistButton;
