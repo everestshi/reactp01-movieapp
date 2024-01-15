@@ -118,62 +118,62 @@ ul {
 
 .movie-thumbnail {
   display: inline-block;
+  position: relative;
 }
 
 .thumbnail-btns {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-}
-
-.heart:hover {
-  font-size: 6vw;
-  max-width: 50px;
-  max-height: 50px;
-}
-
-.solid-heart {
   position: absolute;
-  box-sizing: border-box;
-  margin: 0.5vw;
   right: 0;
-  font-size: 5vw;
-  max-width: 40px;
-  max-height: 40px;
-  color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
 
 .outline-heart {
-  position: absolute;
   box-sizing: border-box;
-  margin: 0.5vw;
+  margin: 0.2rem 0.2rem 0.2rem auto;
   right: 0;
-  font-size: 5vw;
-  max-width: 40px;
-  max-height: 40px;
+  font-size: 3vw;
+  max-width: 30px;
+  max-height: 30px;
   color: lightgrey;
 }
 
-.outline-clock {
-  position: absolute;
+.solid-heart {
   box-sizing: border-box;
-  margin: 0.5vw;
+  margin: 0.2rem 0.2rem 0.2rem auto;
   right: 0;
-  font-size: 5vw;
-  max-width: 40px;
-  max-height: 40px;
+  font-size: 3vw;
+  max-width: 30px;
+  max-height: 30px;
+  color: red;
+}
+
+.outline-clock {
+  box-sizing: border-box;
+  margin: 0.2rem 0.2rem 0.2rem auto;
+  right: 0;
+  font-size: 3vw;
+  max-width: 30px;
+  max-height: 30px;
   color: lightgrey;
 }
 
 .solid-clock {
-  position: absolute;
   box-sizing: border-box;
-  margin: 0.5vw;
+  margin: 0.2rem 0.2rem 0.2rem auto;
   right: 0;
-  font-size: 5vw;
+  font-size: 3vw;
+  max-width: 30px;
+  max-height: 30px;
+  color: orange;
+}
+
+.heart:hover,
+.clock:hover {
+  font-size: 3.5vw;
   max-width: 40px;
   max-height: 40px;
-  color: orange;
 }
 
 footer {
