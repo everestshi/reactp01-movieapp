@@ -22,12 +22,8 @@ function PageFavs() {
           </p>
         ) : (
           <div className="movies-grid">
-            {favs.map((movie) => {
-              return (
-                <Link key={movie.id} to={`/movie-details/${movie.id}`}>
-                  <MovieThumbnail movie={movie} isFav={true} isOnWatchlist={movie.isOnWatchlist}/>
-                </Link>
-              );
+            {favs.map((movieObj) => {
+              return <MovieThumbnail key={movieObj.id} movieObj={movieObj} />;
             })}
           </div>
         )}
