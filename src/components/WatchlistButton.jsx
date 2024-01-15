@@ -35,6 +35,4 @@ function WatchlistButton({ movieObj, isOnWatchlist }) {
   return <>{watchListBtn}</>;
 }
 
-};
-
 export default WatchlistButton;
