@@ -43,7 +43,7 @@ function PageMovieDetails() {
           </p>
         ) : (
           <div className="movie-single">
-            <MovieDetail movie={movieObj} />
+            <MovieDetail movieObj={movieObj} />
           </div>
         )}
       </section>

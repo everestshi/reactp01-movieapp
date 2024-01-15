@@ -22,8 +22,8 @@ function PageFavs() {
           </p>
         ) : (
           <div className="movies-grid">
-            {favs.map((movie) => {
-              return <MovieThumbnail key={movie.id} movie={movie} />;
+            {favs.map((movieObj) => {
+              return <MovieThumbnail key={movieObj.id} movieObj={movieObj} />;
             })}
           </div>
         )}

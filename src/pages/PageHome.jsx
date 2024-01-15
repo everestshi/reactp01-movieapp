@@ -96,8 +96,8 @@ function PageHome() {
 
   const movieList = (
     <div className="movies-grid">
-      {movies.map((movie) => (
-        <MovieThumbnail key={movie.id} movie={movie} />
+      {movies.map((movieObj) => (
+        <MovieThumbnail key={movieObj.id} movieObj={movieObj} />
       ))}
     </div>
   );

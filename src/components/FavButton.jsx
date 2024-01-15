@@ -1,27 +1,39 @@
-// Fav Button
+import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as outlineHeart } from '@fortawesome/free-regular-svg-icons';
+import { addFav, deleteFav } from '../features/favs/favsSlice';
 
-function FavButton({ characterObj, remove, handleFavClick }) {
-  function handleAddFav() {
-    handleFavClick(true, characterObj);
-  }
+function FavButton({ movieObj, isFav }) {
+  const dispatch = useDispatch();
 
-  function handleRemoveFav() {
-    handleFavClick(false, characterObj);
-  }
+  const handleFavClick = () => {
+    if (isFav === true) {
+      dispatch(deleteFav(movieObj));
+    } else {
+      dispatch(addFav(movieObj));
+    }
+  };
 
-  return (
-    <>
-      {remove === false ? (
-        <button onClick={handleAddFav}>Add To Favourites</button>
-      ) : (
-        <button onClick={handleRemoveFav}>Remove From Favourites</button>
-      )}
-    </>
+  const favBtn = isFav ? (
+    <FontAwesomeIcon
+      icon={solidHeart}
+      className="heart solid-heart"
+      onClick={handleFavClick}
+    />
+  ) : (
+    <FontAwesomeIcon
+      icon={outlineHeart}
+      className="heart outline-heart"
+      onClick={handleFavClick}
+    />
   );
+
+  return <>{favBtn}</>;
 }
 
 FavButton.defaultProps = {
-  remove: false,
+  remove: false
 };
 
 export default FavButton;

@@ -117,8 +117,13 @@ ul {
 }
 
 .movie-thumbnail {
-  position: relative;
   display: inline-block;
+}
+
+.thumbnail-btns {
+  position: relative;
+  display: flex;
+  flex-direction: row;
 }
 
 .heart:hover {
@@ -147,6 +152,28 @@ ul {
   max-width: 40px;
   max-height: 40px;
   color: lightgrey;
+}
+
+.outline-clock {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0.5vw;
+  right: 0;
+  font-size: 5vw;
+  max-width: 40px;
+  max-height: 40px;
+  color: lightgrey;
+}
+
+.solid-clock {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0.5vw;
+  right: 0;
+  font-size: 5vw;
+  max-width: 40px;
+  max-height: 40px;
+  color: orange;
 }
 
 footer {

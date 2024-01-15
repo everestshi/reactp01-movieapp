@@ -26,7 +26,7 @@ function MovieDetail({ movieObj }) {
   return (
     <div className="movie-detail">
       <div className="movie-detail-panel">
-        <MovieThumbnail key={movieObj.id} movie={movieObj} />
+        <MovieThumbnail key={movieObj.id} movieObj={movieObj} />
         <div className="movie-description">
           <p>{movieObj.title}</p>
           <p>{movieObj.vote_average}</p>
