@@ -4,6 +4,7 @@ import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as outlineHeart } from '@fortawesome/free-regular-svg-icons';
 import { addFav, deleteFav } from '../features/favs/favsSlice';
 
+
 function FavButton({ movieObj, isFav }) {
   const dispatch = useDispatch();
 

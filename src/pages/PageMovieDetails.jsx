@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import MovieDetail from '../components/MovieDetail';
 import { appTitle } from '../globals/globalVariables';
-
 import { useSelector } from 'react-redux';
 import {
   fetchPopularMovies,

@@ -23,6 +23,14 @@ function MovieDetail({ movieObj }) {
     .map((genre) => genre.name)
     .join(', ');
 
+  function handleWatchlistClick(addToWatchlist, obj) {
+    if (addToWatchlist === true) {
+      dispatch(addWatchlistItem(obj));
+    } else {
+      dispatch(deleteWatchlistItem(obj));
+    }
+  }
+
   return (
     <div className="movie-detail">
       <div className="movie-detail-panel">

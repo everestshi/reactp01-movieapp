@@ -35,8 +35,6 @@ function WatchlistButton({ movieObj, isOnWatchlist }) {
   return <>{watchListBtn}</>;
 }
 
-WatchlistButton.defaultProps = {
-  remove: false
 };
 
 export default WatchlistButton;

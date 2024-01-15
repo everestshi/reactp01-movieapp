@@ -7,17 +7,17 @@ import {
   fetchNowPlayingMovies,
   fetchUpcomingMovies,
   searchMovies,
-  fetchMovieGenres
-} from '../data/tmdb-data';
-import MovieThumbnail from '../components/MovieThumbnail';
+  fetchMovieGenres,
+} from "../data/tmdb-data";
+import MovieThumbnail from "../components/MovieThumbnail";
 
 function PageHome() {
   const [movies, setMovies] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('popular');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [displayCount, setDisplayCount] = useState(12);
+  const [selectedCategory, setSelectedCategory] = useState("popular");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [displayCount, setDisplayCount] = useState(12); 
   const [totalMoviesCount, setTotalMoviesCount] = useState(0);
-  const [previousCategory, setPreviousCategory] = useState('');
+  const [previousCategory, setPreviousCategory] = useState("");
 
   const handleSearch = async () => {
     try {
@@ -44,13 +44,13 @@ function PageHome() {
         setTotalMoviesCount(fetchedMovies.length);
         moviesToFetch = fetchedMovies.slice(0, displayCount);
       } else {
-        if (selectedCategory === 'popular') {
+        if (selectedCategory === "popular") {
           fetchedMovies = await fetchPopularMovies();
-        } else if (selectedCategory === 'topRated') {
+        } else if (selectedCategory === "topRated") {
           fetchedMovies = await fetchTopRatedMovies();
-        } else if (selectedCategory === 'nowPlaying') {
+        } else if (selectedCategory === "nowPlaying") {
           fetchedMovies = await fetchNowPlayingMovies();
-        } else if (selectedCategory === 'upcoming') {
+        } else if (selectedCategory === "upcoming") {
           fetchedMovies = await fetchUpcomingMovies();
         }
         setTotalMoviesCount(fetchedMovies.length);
@@ -63,7 +63,6 @@ function PageHome() {
         moviesToFetch = moviesToFetch.slice(0, displayCount);
         setPreviousCategory(selectedCategory); // Update the previous category
       }
-
       setMovies(moviesToFetch);
     };
 
@@ -104,14 +103,14 @@ function PageHome() {
 
   const searchSection = (
     <div className="search-bar">
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search movie titles"
-      />
-      <button onClick={handleSearch}>Search</button>
-    </div>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search movie titles"
+          />
+          <button onClick={handleSearch}>Search</button>
+        </div>
   );
 
   return (
