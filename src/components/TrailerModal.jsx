@@ -1,5 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import ReactPlayer from "react-player";
 
 function TrailerModal({ trailerUrl, showModal, setShowModal }) {
   const trailerComponent = trailerUrl ? (
@@ -7,9 +8,13 @@ function TrailerModal({ trailerUrl, showModal, setShowModal }) {
       <Button variant="secondary" onClick={() => setShowModal(false)}>
         Close
       </Button>
-      <video controls>
+      <ReactPlayer
+        url={trailerUrl}
+        config={{ youtube: { playerVars: { showInfo: 1, controls: 1 } } }}
+      ></ReactPlayer>
+      {/* <video controls>
         <source src={trailerUrl} type="video/mp4" />
-      </video>
+      </video> */}
     </>
   ) : (
     ""
