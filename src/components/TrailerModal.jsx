@@ -4,12 +4,14 @@ import Button from "react-bootstrap/Button";
 function TrailerModal({ trailerUrl, showModal, setShowModal }) {
   const trailerComponent = trailerUrl ? (
     <>
-      <Button variant="secondary" onClick={() => setShowModal(false)}>
+      <Button className="modal-close-btn" onClick={() => setShowModal(false)}>
         Close
       </Button>
-      <video controls>
-        <source src={trailerUrl} type="video/mp4" />
-      </video>
+      <iframe
+        src={trailerUrl + "?autoplay=1"}
+        allow="autoplay"
+        allowFullScreen
+      ></iframe>
     </>
   ) : (
     ""
@@ -18,11 +20,10 @@ function TrailerModal({ trailerUrl, showModal, setShowModal }) {
   return (
     <>
       <Modal
-        className="movie-modal"
         show={showModal}
+        dialogClassName="movie-modal"
         onHide={() => setShowModal(false)}
         backdrop="static"
-        dialogClassName="modal-90w"
         animation={false}
         keyboard={false}
       >
