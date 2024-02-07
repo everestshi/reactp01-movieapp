@@ -2,21 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import MovieDetail from '../components/MovieDetail';
 import { appTitle } from '../globals/globalVariables';
-import { useSelector } from 'react-redux';
-import {
-  fetchPopularMovies,
-  fetchTopRatedMovies,
-  fetchNowPlayingMovies,
-  fetchUpcomingMovies,
-  searchMovies,
-  fetchMovieGenres
-} from '../data/tmdb-data';
+import { fetchPopularMovies, fetchTrailerUrl } from '../data/tmdb-data';
 
 function PageMovieDetails() {
-  const favs = useSelector((state) => state.favs.items);
-  const watchlist = useSelector((state) => state.watchlist.items);
   const { id } = useParams();
   const [movieObj, setMovieObj] = useState(null);
+  const [trailerUrl, setTrailerUrl] = useState('');
 
   useEffect(() => {
     const getMovie = async () => {
@@ -30,10 +21,28 @@ function PageMovieDetails() {
       }
     };
     getMovie();
+    getTrailer(id);
   }, [id]);
+
+  const getTrailer = async (id) => {
+    const url = await fetchTrailerUrl(id);
+    setTrailerUrl(url);
+  };
+
+  const trailerComponent = trailerUrl ? (
+    <iframe
+      className="detail-page-trailer"
+      src={trailerUrl}
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  ) : (
+    ''
+  );
 
   return (
     <main>
+      {trailerComponent}
       <section>
         <h2>Movie Details</h2>
         {!movieObj ? (

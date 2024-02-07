@@ -8,16 +8,20 @@ import {
   fetchUpcomingMovies,
   searchMovies,
   fetchMovieGenres,
-} from "../data/tmdb-data";
-import MovieThumbnail from "../components/MovieThumbnail";
+  fetchTrailerUrl
+} from '../data/tmdb-data';
+import MovieThumbnail from '../components/MovieThumbnail';
+import TrailerModal from '../components/TrailerModal';
 
 function PageHome() {
   const [movies, setMovies] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("popular");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [displayCount, setDisplayCount] = useState(12); 
+  const [selectedCategory, setSelectedCategory] = useState('popular');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [displayCount, setDisplayCount] = useState(12);
   const [totalMoviesCount, setTotalMoviesCount] = useState(0);
-  const [previousCategory, setPreviousCategory] = useState("");
+  const [previousCategory, setPreviousCategory] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [trailerUrl, setTrailerUrl] = useState('');
 
   const handleSearch = async () => {
     try {
@@ -44,13 +48,13 @@ function PageHome() {
         setTotalMoviesCount(fetchedMovies.length);
         moviesToFetch = fetchedMovies.slice(0, displayCount);
       } else {
-        if (selectedCategory === "popular") {
+        if (selectedCategory === 'popular') {
           fetchedMovies = await fetchPopularMovies();
-        } else if (selectedCategory === "topRated") {
+        } else if (selectedCategory === 'topRated') {
           fetchedMovies = await fetchTopRatedMovies();
-        } else if (selectedCategory === "nowPlaying") {
+        } else if (selectedCategory === 'nowPlaying') {
           fetchedMovies = await fetchNowPlayingMovies();
-        } else if (selectedCategory === "upcoming") {
+        } else if (selectedCategory === 'upcoming') {
           fetchedMovies = await fetchUpcomingMovies();
         }
         setTotalMoviesCount(fetchedMovies.length);
@@ -96,22 +100,39 @@ function PageHome() {
   const movieList = (
     <div className="movies-grid">
       {movies.map((movieObj) => (
-        <MovieThumbnail key={movieObj.id} movieObj={movieObj} />
+        <div key={movieObj.id}>
+          <MovieThumbnail movieObj={movieObj} />
+          <button
+            onClick={async () => {
+              await getTrailer(movieObj.id);
+              setShowModal(true);
+            }}
+          >
+            Watch Trailer
+          </button>
+        </div>
       ))}
     </div>
   );
 
   const searchSection = (
     <div className="search-bar">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search movie titles"
-          />
-          <button onClick={handleSearch}>Search</button>
-        </div>
+      <input
+        type="text"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        placeholder="Search movie titles"
+      />
+      <button onClick={handleSearch}>Search</button>
+    </div>
   );
+
+  const getTrailer = async (movieId) => {
+    if (movieId) {
+      const url = await fetchTrailerUrl(movieId);
+      setTrailerUrl(url);
+    }
+  };
 
   return (
     <main>
@@ -121,18 +142,14 @@ function PageHome() {
         {categoryDropDownMenu}
         {movieList}
         {displayMoreButton}
+        <TrailerModal
+          trailerUrl={trailerUrl}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
       </section>
     </main>
   );
 }
 
 export default PageHome;
-
-/*
-<select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
-{years.map((year) => (
-  <option key={year} value={year}>
-    {year}
-  </option>
-))}
-</select>*/
