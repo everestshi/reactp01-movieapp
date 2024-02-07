@@ -31,7 +31,7 @@ table {
 
 /* Type */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #1c1c1c;
   background-color: #333;
 }
@@ -40,7 +40,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: 'Alatsi', sans-serif;
+  font-family: "Alatsi", sans-serif;
 }
 
 h1,
@@ -211,12 +211,26 @@ footer p {
   mask-image: var(--gradient-mask);
 }
 
-.modal-dialogue {
-  width: 100%;
-}
-.modal-content {
-  width: 100%;
-}
-.modal-body {
-  width: 100%;
+.movie-modal {
+  position: relative;
+  min-width: 80vw;
+
+  .modal-body {
+    padding: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .modal-close-btn {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+  }
+
+  iframe {
+    box-sizing: border-box;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
 }
