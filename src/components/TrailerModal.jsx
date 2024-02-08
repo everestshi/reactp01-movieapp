@@ -1,30 +1,29 @@
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 function TrailerModal({ trailerUrl, showModal, setShowModal }) {
   const trailerComponent = trailerUrl ? (
     <>
-      <Button variant="secondary" onClick={() => setShowModal(false)}>
+      <Button className="modal-close-btn" onClick={() => setShowModal(false)}>
         Close
       </Button>
       <iframe
-        src={trailerUrl}
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        src={trailerUrl + "?autoplay=1"}
+        allow="autoplay"
         allowFullScreen
-      ></iframe>{' '}
+      ></iframe>
     </>
   ) : (
-    ''
+    ""
   );
 
   return (
     <>
       <Modal
-        className="movie-modal"
         show={showModal}
+        dialogClassName="movie-modal"
         onHide={() => setShowModal(false)}
         backdrop="static"
-        dialogClassName="modal-90w"
         animation={false}
         keyboard={false}
       >

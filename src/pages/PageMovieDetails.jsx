@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import MovieDetail from '../components/MovieDetail';
-import { appTitle } from '../globals/globalVariables';
-import { fetchPopularMovies, fetchTrailerUrl } from '../data/tmdb-data';
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import MovieDetail from "../components/MovieDetail";
+import { appTitle } from "../globals/globalVariables";
+import { fetchPopularMovies, fetchTrailerUrl } from "../data/tmdb-data";
 
 function PageMovieDetails() {
   const { id } = useParams();
   const [movieObj, setMovieObj] = useState(null);
-  const [trailerUrl, setTrailerUrl] = useState('');
+  const [trailerUrl, setTrailerUrl] = useState("");
 
   useEffect(() => {
     const getMovie = async () => {
@@ -37,7 +37,7 @@ function PageMovieDetails() {
       allowFullScreen
     ></iframe>
   ) : (
-    ''
+    ""
   );
 
   return (
