@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { appTitle } from '../globals/globalVariables';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlay as outlinePlay } from '@fortawesome/free-regular-svg-icons';
+import { faCirclePlay as solidPlay } from '@fortawesome/free-solid-svg-icons';
 
 import {
   fetchPopularMovies,
@@ -100,15 +103,17 @@ function PageHome() {
   const movieList = (
     <div className="movies-grid">
       {movies.map((movieObj) => (
-        <div key={movieObj.id}>
+        <div key={movieObj.id} className="movie-card">
           <MovieThumbnail movieObj={movieObj} />
           <button
+            className="watch-trailer-btn"
             onClick={async () => {
               await getTrailer(movieObj.id);
               setShowModal(true);
             }}
           >
-            Watch Trailer
+            <FontAwesomeIcon icon={outlinePlay} className="circle-play-icon" />
+            <span>Watch Trailer</span>
           </button>
         </div>
       ))}
