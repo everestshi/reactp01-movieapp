@@ -18,16 +18,15 @@ function AppRouter() {
       <div className="wrapper">
         <Header title={appTitle} />
         <Nav />
-        <main>
-          <Routes>
-            <Route path="/" exact element={<PageHome />} />
-            <Route path="/movie-details/:id" element={<PageMovieDetails />} />
-            <Route path="/about" element={<PageAbout />} />
-            <Route path="/favs" element={<PageFavs />} />
-            <Route path="/watchlist" element={<PageWatchlist />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </main>
+        <Routes>
+          <Route path="/" exact element={<PageHome />} />
+          <Route path="/movie-details/:id" element={<PageMovieDetails />} />
+          <Route path="/about" element={<PageAbout />} />
+          <Route path="/favs" element={<PageFavs />} />
+          <Route path="/watchlist" element={<PageWatchlist />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+
         <Footer author={appAuthor} />
       </div>
     </BrowserRouter>
