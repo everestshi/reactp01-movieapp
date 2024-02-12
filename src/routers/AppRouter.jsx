@@ -26,6 +26,7 @@ function AppRouter() {
           <Route path="/watchlist" element={<PageWatchlist />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+
         <Footer author={appAuthor} />
       </div>
     </BrowserRouter>

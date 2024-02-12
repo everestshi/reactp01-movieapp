@@ -6,6 +6,7 @@
   --gradient-mask: linear-gradient(rgba(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
   /* in px */
   --side-padding-main: 10;
+
 }
 
 /* Resets */
@@ -172,6 +173,7 @@ ul {
 .outline-heart:hover,
 .outline-clock:hover {
   color: rgb(64, 224, 208);
+
 }
 
 /* Home Page Styling */
@@ -213,6 +215,7 @@ ul {
   aspect-ratio: 16/9;
 }
 
+
 .movie-modal {
   position: relative;
   min-width: 80vw;
@@ -238,6 +241,7 @@ ul {
 }
 
 /* Detail Page Styling */
+
 .banner-container {
   position: relative;
   width: 100%;
@@ -264,12 +268,14 @@ ul {
     font-size: 50px;
     text-align: center;
   }
+
 }
 
 .detail-page-trailer {
   width: 100%;
   aspect-ratio: 16 / 9;
 }
+
 
 .movie-detail-panel {
   display: flex;
@@ -284,3 +290,4 @@ ul {
   width: 800px;
   margin-bottom: 20px;
 }
+
