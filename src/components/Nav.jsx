@@ -3,12 +3,13 @@ import { NavLink } from 'react-router-dom';
 import '../../public/assets/styles/main-nav.css';
 
 const Nav = () => {
-  const [isActive, setIsActive] = useState(false);
+  const [isSideBarActive, setIsSideBarActive] = useState(false);
+  const[isNavActive, setIsNavActive] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const mainNav = document.querySelector(".main-nav");
-      setIsActive(window.scrollY >= 10);
+      setIsNavActive(window.scrollY >= 10);
       if (mainNav) {
         if (window.scrollY >= 10) {
           mainNav.classList.add("active");
@@ -26,11 +27,11 @@ const Nav = () => {
   }, []);
 
   function toggleNav() {
-    setIsActive(!isActive);
+    setIsSideBarActive(!isSideBarActive);
   }
 
   return (
-    <div className={`main-nav ${isActive ? 'active' : ''}`}>
+    <div className={`main-nav ${isNavActive ? 'active' : ''}`}>
       <div className="nav-container">
         <div className="overlay" onClick={toggleNav}></div>
         <img src="../../assets/images/MovieLogo.png" alt="Movie Logo" />
@@ -38,7 +39,7 @@ const Nav = () => {
           <ion-icon name="reorder-two"></ion-icon>
           <ion-icon name="reorder-two"></ion-icon>
         </button>
-        <nav className={`navbar ${isActive ? 'active' : ''}`}>
+        <nav className={`navbar ${isSideBarActive ? 'active' : ''}`}>
           <div className="navbar-top">
             <img src="../../assets/images/MovieLogo.png" alt="Movie Logo" />
             <button className='menu-close-btn' onClick={toggleNav}>
