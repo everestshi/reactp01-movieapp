@@ -63,13 +63,20 @@ p {
   line-height: 1.4;
 }
 
+
 footer {
   padding: 1em 1.25em;
-  border-top: 1px dotted #aeaeae;
-  position: absolute;
+  border-top: 1px solid #aeaeae;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+  /* position: absolute; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   bottom: 0;
   width: 100%;
   margin-left: -1.25em;
+  gap: 5px;
 }
 
 footer p {
@@ -77,9 +84,7 @@ footer p {
   padding: 0;
   list-style: none;
   line-height: 1;
-  font-size: x-small;
-  display: block;
-  width: 100%;
+  font-size: small;
 }
 
 /* Nav bar */
