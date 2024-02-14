@@ -3,6 +3,7 @@ import { appTitle } from '../globals/globalVariables';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlay as outlinePlay } from '@fortawesome/free-regular-svg-icons';
 import { faCirclePlay as solidPlay } from '@fortawesome/free-solid-svg-icons';
+
 import {
   fetchPopularMovies,
   fetchTopRatedMovies,
@@ -11,7 +12,7 @@ import {
   searchMovies,
   fetchMovieGenres,
   fetchTrailerUrl,
-  fetchBannerUrl,
+  fetchBannerUrl
 } from '../data/tmdb-data';
 import MovieThumbnail from '../components/MovieThumbnail';
 import TrailerModal from '../components/TrailerModal';
@@ -73,10 +74,12 @@ function PageHome() {
       }
 
       // Fetch banner URLs for each movie
-      const moviesWithBanners = await Promise.all(moviesToFetch.map(async movie => {
-        const bannerUrl = await fetchBannerUrl(movie.id);
-        return { ...movie, bannerUrl };
-      }));
+      const moviesWithBanners = await Promise.all(
+        moviesToFetch.map(async (movie) => {
+          const bannerUrl = await fetchBannerUrl(movie.id);
+          return { ...movie, bannerUrl };
+        })
+      );
 
       setMovies(moviesWithBanners);
     };
@@ -152,7 +155,7 @@ function PageHome() {
       <section>
         {searchSection}
         <h2>Top Movies</h2>
-        <TopMoviesCarousel movies={movies}/>
+        <TopMoviesCarousel movies={movies} />
         {categoryDropDownMenu}
         {movieList}
         {displayMoreButton}

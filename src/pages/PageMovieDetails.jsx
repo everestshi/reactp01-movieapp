@@ -11,14 +11,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faCirclePlay as outlinePlay } from '@fortawesome/free-regular-svg-icons';
 
-
 function PageMovieDetails() {
   const { id } = useParams();
   const [movieObj, setMovieObj] = useState(null);
   const [trailerUrl, setTrailerUrl] = useState('');
   const [bannerUrl, setBannerUrl] = useState('');
   const [playTrailer, setPlayTrailer] = useState(false);
-
 
   useEffect(() => {
     const getMovie = async () => {
@@ -67,7 +65,6 @@ function PageMovieDetails() {
       return '';
     }
   };
-
 
   return (
     <main>
