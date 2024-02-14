@@ -2,7 +2,7 @@
 :root {
   --bg-theme-color: black;
   --text-theme-color: white;
-  --min-thumbnail-width: 250px;
+  --movie-poster-width: 250px;
   --gradient-mask: linear-gradient(rgba(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
   /* in px */
   --side-padding-main: 10;
@@ -43,7 +43,10 @@ table {
   border-spacing: 0;
 }
 
-h1,
+a {
+  text-decoration: none;
+}
+
 h2,
 h3,
 h4 {
@@ -112,6 +115,10 @@ ul {
 .movie-thumbnail {
   display: inline-block;
   position: relative;
+
+  img {
+    width: var(--movie-poster-width) !important;
+  }
 }
 
 .thumbnail-btns {
@@ -175,11 +182,105 @@ ul {
 }
 
 /* Home Page Styling */
+
+/* Movie Carousel */
+.movie-slide {
+  position: relative;
+}
+
+.movie-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.movie-info {
+  z-index: 1;
+  margin-bottom: 100px;
+  width: 50%;
+}
+
+.movie-info h2 {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.movie-info p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.watch-trailer-btn-carousel,
+.more-info-btn-carousel {
+  all: unset;
+  background-color: rgb(255, 140, 0);
+  color: white;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+}
+
+.watch-trailer-btn-carousel:hover,
+.more-info-btn-carousel:hover {
+  background-color: rgb(73, 0, 138);
+}
+
+.movie-overlay .circle-play-icon {
+  margin-right: 10px;
+}
+
+.movie-overlay .outline-heart,
+.movie-overlay .outline-clock {
+  margin: 0;
+}
+
+.watch-trailer-btn,
+.view-details-btn,
+.fav-btn,
+.watchlist-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #e50914; /* Netflix red */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.watch-trailer-btn:hover,
+.view-details-btn:hover,
+.fav-btn:hover,
+.watchlist-btn:hover {
+  background-color: #bf0813; /* Darker shade of Netflix red on hover */
+}
+
+.button-icon {
+  margin-right: 5px;
+}
+
 .movies-grid {
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
-    minmax(var(--min-thumbnail-width), 1fr)
+    minmax(var(--movie-poster-width), 1fr)
   );
   gap: 20px;
   margin-bottom: 10px;
@@ -274,10 +375,6 @@ ul {
 .movie-detail-panel {
   display: flex;
   gap: 20px;
-
-  .movie-thumbnail img {
-    width: var(--min-thumbnail-width);
-  }
 }
 
 .movie-detail-panel .movie {
