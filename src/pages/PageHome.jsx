@@ -129,6 +129,7 @@ function PageHome() {
         placeholder="Search movie titles"
       />
       <button onClick={handleSearch}>Search</button>
+      <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
     </div>
   );
 
