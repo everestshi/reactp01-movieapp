@@ -11,8 +11,8 @@ const BANNER_SIZES = [
 
 
 // Function to fetch popular movies
-export const fetchPopularMovies = async () => {
-  const API_URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}`;
+export const fetchPopularMovies = async ( page = 1 ) => {
+  const API_URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`;
   try {
     const response = await fetch(API_URL);
     if (!response.ok) {
