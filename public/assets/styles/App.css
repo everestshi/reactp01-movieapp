@@ -116,9 +116,9 @@ ul {
   display: inline-block;
   position: relative;
 
-  /* img {
+  img {
     max-width: var(--movie-poster-width) !important;
-  } */
+  }
 }
 
 .thumbnail-btns {
