@@ -115,10 +115,6 @@ ul {
 .movie-thumbnail {
   display: inline-block;
   position: relative;
-
-  img {
-    max-width: var(--movie-poster-width) !important;
-  }
 }
 
 .thumbnail-btns {
@@ -414,6 +410,10 @@ ul {
 .movie-detail-panel {
   display: flex;
   gap: 20px;
+
+  img {
+    max-width: var(--movie-poster-width) !important;
+  }
 }
 
 .movie-detail-panel .movie {
