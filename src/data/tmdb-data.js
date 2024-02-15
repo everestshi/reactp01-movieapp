@@ -121,7 +121,7 @@ export const fetchTrailerUrl = async (id) => {
     const youtubeId = data.results.filter((obj) => {
       return obj.type === 'Trailer' && obj.site === 'YouTube';
     })[0].key;
-    return `https://www.youtube.com/embed/${youtubeId}?&controls=1&modestbranding=1&playsinline=1&rel=0`;
+    return `https://www.youtube.com/embed/${youtubeId}?&controls=1&modestbranding=1&playsinline=1&rel=0&autoplay=1`;
 
     // return data.results;
   } catch (error) {
