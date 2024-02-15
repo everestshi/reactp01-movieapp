@@ -47,18 +47,34 @@ function PageMovieDetails() {
   const getTrailerComponent = () => {
     if (playTrailer && trailerUrl) {
       return (
-        <iframe
-          className="detail-page-trailer"
-          src={trailerUrl}
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        <div className="video-container">
+          <iframe
+            className="detail-page-trailer"
+            src={trailerUrl}
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <button
+            className="btn"
+            onClick={() => {
+              setPlayTrailer(false);
+            }}
+          >
+            Close
+          </button>
+        </div>
       );
     } else if (bannerUrl) {
       return (
-        <div className="banner-container">
+        <div className={'banner-container'}>
           <img className={'banner'} src={bannerUrl} />
-          <FontAwesomeIcon icon={outlinePlay} className="circle-play-icon" />
+          <FontAwesomeIcon
+            icon={outlinePlay}
+            className="circle-play-icon"
+            onClick={() => {
+              setPlayTrailer(true);
+            }}
+          />
         </div>
       );
     } else {
@@ -68,7 +84,10 @@ function PageMovieDetails() {
 
   return (
     <main>
-      {getTrailerComponent()}
+      <div className={`banner-section ${playTrailer ? 'play-trailer' : ''}`}>
+        {getTrailerComponent()}
+      </div>
+
       <section>
         <h2>Movie Details</h2>
         {!movieObj ? (
