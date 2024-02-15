@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import FavButton from './FavButton';
 import WatchlistButton from './WatchlistButton';
-import { useDispatch } from 'react-redux';
 import MovieThumbnail from './MovieThumbnail';
 import { fetchMovieGenres } from '../data/tmdb-data';
 
 function MovieDetail({ movieObj }) {
-  const dispatch = useDispatch();
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
@@ -22,14 +20,6 @@ function MovieDetail({ movieObj }) {
     .filter((genre) => movieObj.genre_ids.includes(genre.id))
     .map((genre) => genre.name)
     .join(', ');
-
-  function handleWatchlistClick(addToWatchlist, obj) {
-    if (addToWatchlist === true) {
-      dispatch(addWatchlistItem(obj));
-    } else {
-      dispatch(deleteWatchlistItem(obj));
-    }
-  }
 
   return (
     <div className="movie-detail">
