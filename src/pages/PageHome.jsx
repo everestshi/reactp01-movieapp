@@ -112,7 +112,7 @@ function PageHome() {
   );
 
   const movieList = (
-    <div className="movies-grid">
+    <div className="responsive-movies-grid">
       {movies.map((movieObj) => (
         <div key={movieObj.id} className="movie-card">
           <MovieThumbnail movieObj={movieObj} />
