@@ -94,7 +94,8 @@ function PageHome() {
 
   const displayMoreButton =
     totalMoviesCount > displayCount ? (
-      <button onClick={handleDisplayMore}>Display More</button>
+      <div className="centered">
+      <button onClick={handleDisplayMore} className="display-more-btn">Display More</button></div>
     ) : null;
 
   const categoryDropDownMenu = (
@@ -145,8 +146,10 @@ function PageHome() {
       <section>
         <h2>Top Movies</h2>
         <TopMoviesCarousel movies={movies} />
+        <div className="search-dropdown-container">
         {searchSection}
         {categoryDropDownMenu}
+        </div>
         {movieList}
         {displayMoreButton}
         <TrailerModal
