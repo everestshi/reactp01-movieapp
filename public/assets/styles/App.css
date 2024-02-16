@@ -161,6 +161,23 @@ ul {
 .search-dropdown-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+/* Search bar  */
+select {
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+.filters select {
+  color: white;
+  font-weight: 550;
+}
+
+.filters option {
+  color: black;
 }
 
 /* Display more button */
