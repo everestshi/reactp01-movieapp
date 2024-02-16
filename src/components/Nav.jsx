@@ -62,7 +62,7 @@ const Nav = () => {
               <NavLink className="navbar-link" to="/favs" onClick={toggleNav}>Favourites</NavLink>
             </li>
             <li>
-              <NavLink className="navbar-link" to="/watchlist" onClick={toggleNav}>Watch Later</NavLink>
+              <NavLink className="navbar-link watch-later-link" to="/watchlist" onClick={toggleNav}>Watch Later</NavLink>
             </li>
           </ul>
         </nav>
