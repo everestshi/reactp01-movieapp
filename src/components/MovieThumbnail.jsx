@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { movieImgBasePath } from '../globals/globalVariables';
-import { fetchMovieGenres, fetchTrailerUrl } from '../data/tmdb-data';
+import { fetchTrailerUrl } from '../data/tmdb-data';
 import FavButton from './FavButton';
 import WatchlistButton from './WatchlistButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,21 +23,9 @@ function MovieThumbnail({ movieObj, allowRedirect = true }) {
     return watchlistMovie.id == movieObj.id;
   });
 
-  const [genres, setGenres] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
   const [trailerUrl, setTrailerUrl] = useState('');
   const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    const getMovieGenres = async () => {
-      const fetchedGenres = await fetchMovieGenres();
-      setGenres(fetchedGenres);
-    };
-
-    getMovieGenres();
-  }, []);
-
-  const genreNames = genres.map((genre) => genre.name).join(', ');
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -62,15 +50,6 @@ function MovieThumbnail({ movieObj, allowRedirect = true }) {
     ></img>
   );
 
-  //if we are in the movie detail page, display plain image else make image redirect-able
-  const moviePoster = allowRedirect ? (
-    <Link reloadDocument to={`/movie-details/${movieObj.id}`}>
-      {movieImage}
-    </Link>
-  ) : (
-    movieImage
-  );
-
   const getTrailer = async (movieId) => {
     if (movieId) {
       const url = await fetchTrailerUrl(movieId);
@@ -86,7 +65,7 @@ function MovieThumbnail({ movieObj, allowRedirect = true }) {
     >
       <div className="thumbnail-image">
         <div className="poster-overlay">
-          {moviePoster}
+          {movieImage}
           {(isFav || isOnWatchlist) && (
             <div className="icon-container">
               {isFav && <FontAwesomeIcon icon={solidHeart} />}
@@ -108,13 +87,13 @@ function MovieThumbnail({ movieObj, allowRedirect = true }) {
           }}
         >
           <Link
+            reloadDocument
             to={`/movie-details/${movieObj.id}`}
             className="overlay-content"
           >
             <div className="overlay-top">
               <h3>{movieObj.title}</h3>
               <p>Rating: {movieObj.vote_average}</p>
-              <p>{genreNames}</p>
               <p className="overview">
                 {truncateOverview(movieObj.overview, 150)}
               </p>
