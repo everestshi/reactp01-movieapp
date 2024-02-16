@@ -1,45 +1,36 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import MovieDetail from '../components/MovieDetail';
+import RecommendedCarousel from '../components/RecommendedCarousel';
 import { appTitle } from '../globals/globalVariables';
-import {
-  fetchPopularMovies,
-  fetchTrailerUrl,
-  fetchBannerUrl
-} from '../data/tmdb-data';
+import { fetchMovie, fetchTrailerUrl, fetchBannerUrl } from '../data/tmdb-data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faCirclePlay as outlinePlay } from '@fortawesome/free-regular-svg-icons';
 
 function PageMovieDetails() {
   const { id } = useParams();
-  const [movieObj, setMovieObj] = useState(null);
+  const [movieDetailObj, setMovieDetailObj] = useState(null);
   const [trailerUrl, setTrailerUrl] = useState('');
   const [bannerUrl, setBannerUrl] = useState('');
   const [playTrailer, setPlayTrailer] = useState(false);
 
   useEffect(() => {
     const getMovie = async () => {
-      const movieData = await fetchPopularMovies(); // Fetch movie data
-      const foundMovie = movieData.find((movie) => String(movie.id) === id);
-      if (foundMovie) {
-        setMovieObj(foundMovie);
-        document.title = `${appTitle} - Movie Details: ${foundMovie.title}`;
-      } else {
-        document.title = `${appTitle} - Movie Details`;
-      }
+      const movie = await fetchMovie(id); // Fetch movie data
+      setMovieDetailObj(movie);
     };
     getMovie();
-    getTrailer(id);
-    getBanner(id);
+    getTrailerUrl(id);
+    getBannerUrl(id);
   }, [id]);
 
-  const getTrailer = async (id) => {
+  const getTrailerUrl = async (id) => {
     const url = await fetchTrailerUrl(id);
     setTrailerUrl(url);
   };
 
-  const getBanner = async (id) => {
+  const getBannerUrl = async (id) => {
     const url = await fetchBannerUrl(id);
     setBannerUrl(url);
   };
@@ -90,15 +81,20 @@ function PageMovieDetails() {
 
       <section>
         <h2>Movie Details</h2>
-        {!movieObj ? (
+        {!movieDetailObj ? (
           <p>
             Movie not found. <Link to="/">Return to home page</Link>.
           </p>
         ) : (
           <div className="movie-single">
-            <MovieDetail movieObj={movieObj} />
+            <MovieDetail movieDetailObj={movieDetailObj} />
           </div>
         )}
+      </section>
+      <section>
+        <div className="recommended-carousel">
+          <RecommendedCarousel movieId={id} />
+        </div>
       </section>
     </main>
   );
