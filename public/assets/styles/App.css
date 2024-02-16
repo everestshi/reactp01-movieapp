@@ -65,13 +65,20 @@ p {
   line-height: 1.4;
 }
 
+
 footer {
   padding: 1em 1.25em;
-  border-top: 1px dotted #aeaeae;
-  position: absolute;
+  border-top: 1px solid #aeaeae;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+  /* position: absolute; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   bottom: 0;
   width: 100%;
   margin-left: -1.25em;
+  gap: 5px;
 }
 
 footer p {
@@ -79,9 +86,48 @@ footer p {
   padding: 0;
   list-style: none;
   line-height: 1;
-  font-size: x-small;
-  display: block;
-  width: 100%;
+  font-size: small;
+}
+
+/* Search Bar  */
+
+.search-icon {
+  color: white;
+  background: transparent;
+  padding: 5px;
+}
+.search-container {
+  height: 3vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: none;
+}
+
+.search-bar {
+  height: 30px;
+  display: flex;
+  cursor: pointer;
+  background: transparent;
+  border-radius: 30px;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  
+}
+
+.search-bar:hover input {
+  width: 300px;
+  border: 1px solid white;
+}
+
+.search-bar input {
+  width: 0;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  transition: 0.8s;
+  background: transparent;
+  color: white;
 }
 
 /* Nav bar */
@@ -264,6 +310,139 @@ ul {
   margin-right: 5px;
 }
 
+
+/* Movie Grid */
+
+/* Add this CSS to your existing styles.css file or create a new CSS file */
+
+.movie-thumbnail {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+
+.thumbnail-image {
+  position: relative;
+  z-index: 1;
+}
+
+.poster-overlay a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Make the image cover the entire area of its container */
+}
+
+.poster-overlay {
+  position: relative;
+}
+
+.icon-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  color: red;
+  gap: 5px;
+}
+
+.thumbnail-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black overlay */
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+/* Background image layer */
+.thumbnail-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black overlay */
+  opacity: 0.8; /* Adjust the opacity as needed */
+  background-size: cover; /* Make the background image cover the entire area */
+  background-position: center; /* Center the background image */
+  z-index: -1; /* Send the background image layer to the bottom */
+}
+
+.thumbnail-overlay:hover {
+  opacity: 1;
+}
+
+.movie-thumbnail:hover .thumbnail-image-title {
+  visibility: hidden;
+}
+
+.overlay-trailer-btn {
+  margin: 0.5rem 0.5rem 0.3rem auto;
+  right: 0;
+  font-size: 30px;
+  color: white;
+}
+
+.overlay-trailer-btn:hover {
+  font-size: 37px;
+  color: rgb(127, 255, 238);
+  cursor: pointer;
+}
+
+.overlay-content {
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.overlay-top {
+  margin: 20px;
+}
+
+.overlay-content h3 {
+  font-size: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.overlay-content p {
+  font-size: 0.7rem;
+  margin: 1rem 0;
+}
+
+.overlay-buttons {
+  margin-top: auto;
+  margin: auto 0 20px 20px;
+  z-index: 1000;
+}
+
+.overlay-buttons button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.overlay-buttons button:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Adjust the styles according to your design preferences */
+
+
+
 .movies-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, var(--movie-poster-width));
@@ -282,7 +461,7 @@ ul {
     auto-fit,
     minmax(var(--movie-poster-width), 1fr)
   );
-  gap: 20px;
+  gap: 2rem;
   justify-content: space-evenly;
   margin-bottom: 10px;
 
