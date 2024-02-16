@@ -157,6 +157,40 @@ ul {
   line-height: 1.3;
 }
 
+/* Search and Drop down menu  */
+.search-dropdown-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Display more button */
+.display-more-btn {
+  color: white;
+  font-weight: 550;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 30px;
+  border: 2px solid #007fff;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: #2f3030;
+}
+
+.display-more-btn:is(:hover, :focus) {
+  background: #007fff;
+  color: black;
+  font-weight: 550;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Crosss-Page Component Stylings */
 .movie-thumbnail {
   display: inline-block;
