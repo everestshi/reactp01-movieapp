@@ -93,10 +93,14 @@ footer p {
 
 /* Search Bar  */
 
+.search-icon {
+  color: white;
+  background: transparent;
+}
 .search-container {
   height: 3vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background: none;
 }
@@ -105,15 +109,16 @@ footer p {
   height: 30px;
   display: flex;
   cursor: pointer;
-  background: white;
+  background: transparent;
   border-radius: 30px;
   align-items: center;
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-
+  
 }
 
 .search-bar:hover input {
-  width: 400px;
+  width: 300px;
+  border: 1px solid white;
 }
 
 .search-bar input {
@@ -123,6 +128,7 @@ footer p {
   font-weight: 500;
   transition: 0.8s;
   background: transparent;
+  color: white;
 }
 
 /* Nav bar */
