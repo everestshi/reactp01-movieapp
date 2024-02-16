@@ -272,6 +272,7 @@ ul {
 .movie-thumbnail {
   position: relative;
   display: inline-block;
+  z-index: 1;
 }
 
 .thumbnail-image {
@@ -285,6 +286,20 @@ ul {
   object-fit: cover; /* Make the image cover the entire area of its container */
 }
 
+.poster-overlay {
+  position: relative;
+}
+
+.icon-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  color: red;
+  gap: 5px;
+}
+
 .thumbnail-overlay {
   position: absolute;
   top: 0;
@@ -293,11 +308,9 @@ ul {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black overlay */
   opacity: 0;
-  transition: opacity 0.1s;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   z-index: 2;
 }
 
@@ -362,6 +375,7 @@ ul {
 .overlay-buttons {
   margin-top: auto;
   margin: auto 0 20px 20px;
+  z-index: 1000;
 }
 
 .overlay-buttons button {
