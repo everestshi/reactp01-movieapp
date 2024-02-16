@@ -420,3 +420,15 @@ ul {
   width: 800px;
   margin-bottom: 20px;
 }
+
+.recommended-carousel {
+  width: 95%;
+  margin: auto;
+
+  .next-arrow {
+    position: absolute;
+    display: inline;
+    color: orange;
+    font-size: 40px;
+  }
+}

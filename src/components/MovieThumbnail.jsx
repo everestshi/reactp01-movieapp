@@ -4,7 +4,7 @@ import { movieImgBasePath } from '../globals/globalVariables';
 import FavButton from './FavButton';
 import WatchlistButton from './WatchlistButton';
 
-function MovieThumbnail({ movieObj }) {
+function MovieThumbnail({ movieObj, allowRedirect = true }) {
   const favs = useSelector((state) => state.favs.items);
   const watchlists = useSelector((state) => state.watchlist.items);
 
@@ -25,10 +25,12 @@ function MovieThumbnail({ movieObj }) {
   );
 
   //if we are in the movie detail page, display plain image else make image redirect-able
-  const moviePoster = useLocation().pathname.includes('movie-details') ? (
-    movieImage
+  const moviePoster = allowRedirect ? (
+    <Link reloadDocument to={`/movie-details/${movieObj.id}`}>
+      {movieImage}
+    </Link>
   ) : (
-    <Link to={`/movie-details/${movieObj.id}`}>{movieImage}</Link>
+    movieImage
   );
 
   return (
