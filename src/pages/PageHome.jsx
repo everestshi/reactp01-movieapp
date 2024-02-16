@@ -116,16 +116,6 @@ function PageHome() {
       {movies.map((movieObj) => (
         <div key={movieObj.id} className="movie-card">
           <MovieThumbnail movieObj={movieObj} />
-          <button
-            className="watch-trailer-btn"
-            onClick={async () => {
-              await getTrailer(movieObj.id);
-              setShowModal(true);
-            }}
-          >
-            <FontAwesomeIcon icon={outlinePlay} className="circle-play-icon" />
-            <span>Watch Trailer</span>
-          </button>
         </div>
       ))}
     </div>
@@ -143,12 +133,6 @@ function PageHome() {
     </div>
   );
 
-  const getTrailer = async (movieId) => {
-    if (movieId) {
-      const url = await fetchTrailerUrl(movieId);
-      setTrailerUrl(url);
-    }
-  };
 
   return (
     <main>
