@@ -12,7 +12,6 @@ export default function RecommendedCarousel({ movieId }) {
   useEffect(() => {
     const getRecommendedMovies = async () => {
       const movies = await fetchRecommendedMovies(movieId);
-
       setRecommendedMovies(movies);
     };
 
