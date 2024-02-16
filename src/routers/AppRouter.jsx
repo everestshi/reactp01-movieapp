@@ -16,7 +16,7 @@ function AppRouter() {
   return (
     <BrowserRouter>
       <div className="wrapper">
-        <Header title={appTitle} />
+        {/* <Header title={appTitle} /> */}
         <Nav />
         <Routes>
           <Route path="/" exact element={<PageHome />} />

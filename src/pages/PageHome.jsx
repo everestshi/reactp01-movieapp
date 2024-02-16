@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { appTitle } from '../globals/globalVariables';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlay as outlinePlay } from '@fortawesome/free-regular-svg-icons';
-import { faCirclePlay as solidPlay } from '@fortawesome/free-solid-svg-icons';
-
+import { useEffect, useState } from "react";
+import { appTitle } from "../globals/globalVariables";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlay as outlinePlay } from "@fortawesome/free-regular-svg-icons";
+import { faCirclePlay as solidPlay } from "@fortawesome/free-solid-svg-icons";
 import {
   fetchPopularMovies,
   fetchTopRatedMovies,
@@ -12,28 +12,28 @@ import {
   searchMovies,
   fetchMovieGenres,
   fetchTrailerUrl,
-  fetchBannerUrl
-} from '../data/tmdb-data';
-import MovieThumbnail from '../components/MovieThumbnail';
-import TrailerModal from '../components/TrailerModal';
-import TopMoviesCarousel from '../components/TopMoviesCarousel';
+  fetchBannerUrl,
+} from "../data/tmdb-data";
+import MovieThumbnail from "../components/MovieThumbnail";
+import TrailerModal from "../components/TrailerModal";
+import TopMoviesCarousel from "../components/TopMoviesCarousel";
 
 function PageHome() {
   const [movies, setMovies] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('popular');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("popular");
+  const [searchQuery, setSearchQuery] = useState("");
   const [displayCount, setDisplayCount] = useState(12);
   const [totalMoviesCount, setTotalMoviesCount] = useState(0);
-  const [previousCategory, setPreviousCategory] = useState('');
+  const [previousCategory, setPreviousCategory] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [trailerUrl, setTrailerUrl] = useState('');
+  const [trailerUrl, setTrailerUrl] = useState("");
 
   const handleSearch = async () => {
     try {
       const searchResults = await searchMovies(searchQuery);
       setMovies(searchResults); // Update the movies state with search results
     } catch (error) {
-      console.error('Error performing search:', error);
+      console.error("Error performing search:", error);
     }
   };
 
@@ -53,13 +53,13 @@ function PageHome() {
         setTotalMoviesCount(fetchedMovies.length);
         moviesToFetch = fetchedMovies.slice(0, displayCount);
       } else {
-        if (selectedCategory === 'popular') {
+        if (selectedCategory === "popular") {
           fetchedMovies = await fetchPopularMovies();
-        } else if (selectedCategory === 'topRated') {
+        } else if (selectedCategory === "topRated") {
           fetchedMovies = await fetchTopRatedMovies();
-        } else if (selectedCategory === 'nowPlaying') {
+        } else if (selectedCategory === "nowPlaying") {
           fetchedMovies = await fetchNowPlayingMovies();
-        } else if (selectedCategory === 'upcoming') {
+        } else if (selectedCategory === "upcoming") {
           fetchedMovies = await fetchUpcomingMovies();
         }
         setTotalMoviesCount(fetchedMovies.length);
@@ -122,14 +122,20 @@ function PageHome() {
   );
 
   const searchSection = (
-    <div className="search-bar">
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search movie titles"
-      />
-      <button onClick={handleSearch}>Search</button>
+    <div className="search-container">
+      <div className="search-bar">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search movie titles"
+        />
+        <FontAwesomeIcon
+          icon={faMagnifyingGlass}
+          className="search-icon"
+          onClick={handleSearch}
+        />
+      </div>
     </div>
   );
 
@@ -137,9 +143,9 @@ function PageHome() {
   return (
     <main>
       <section>
-        {searchSection}
         <h2>Top Movies</h2>
         <TopMoviesCarousel movies={movies} />
+        {searchSection}
         {categoryDropDownMenu}
         {movieList}
         {displayMoreButton}
