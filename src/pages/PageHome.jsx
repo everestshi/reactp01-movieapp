@@ -17,6 +17,9 @@ import {
 import MovieThumbnail from "../components/MovieThumbnail";
 import TrailerModal from "../components/TrailerModal";
 import TopMoviesCarousel from "../components/TopMoviesCarousel";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function PageHome() {
   const [movies, setMovies] = useState([]);
@@ -27,6 +30,9 @@ function PageHome() {
   const [previousCategory, setPreviousCategory] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [trailerUrl, setTrailerUrl] = useState("");
+  const categories = ["popular", "topRated", "nowPlaying", "upcoming"];
+  const [remainingCategories, setRemainingCategories] = useState([]);
+  const [sliders, setSliders] = useState({});
 
   const handleSearch = async () => {
     try {
@@ -87,6 +93,43 @@ function PageHome() {
     getMovies();
   }, [selectedCategory, searchQuery, displayCount, previousCategory]);
 
+  useEffect(() => {
+    const remaining = categories.filter(
+      (category) => category !== selectedCategory
+    );
+    setRemainingCategories(remaining);
+    console.log(remaining);
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    const generateSliders = async () => {
+      const slidersData = {};
+      for (const category of remainingCategories) {
+        let movies = [];
+        switch (category) {
+          case "popular":
+            movies = await fetchPopularMovies();
+            break;
+          case "topRated":
+            movies = await fetchTopRatedMovies();
+            break;
+          case "nowPlaying":
+            movies = await fetchNowPlayingMovies();
+            break;
+          case "upcoming":
+            movies = await fetchUpcomingMovies();
+            break;
+          default:
+            break;
+        }
+        slidersData[category] = movies;
+      }
+      setSliders(slidersData);
+    };
+
+    generateSliders();
+  }, [remainingCategories]);
+
   const handleDisplayMore = () => {
     // Increment the display count to show more movies
     setDisplayCount(displayCount + 12);
@@ -95,7 +138,10 @@ function PageHome() {
   const displayMoreButton =
     totalMoviesCount > displayCount ? (
       <div className="centered">
-      <button onClick={handleDisplayMore} className="display-more-btn">Display More</button></div>
+        <button onClick={handleDisplayMore} className="display-more-btn">
+          Display More
+        </button>
+      </div>
     ) : null;
 
   const categoryDropDownMenu = (
@@ -140,15 +186,74 @@ function PageHome() {
     </div>
   );
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 6,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 2000,
+        settings: {
+          slidesToShow: 7,
+          slidesToScroll: 7,
+        },
+      },
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 5,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 650,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 425,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  // Function to format category names with separate words and capitalize first letter of every word
+  const formatCategoryName = (category) => {
+    return category
+      .split(/(?=[A-Z])/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
   return (
     <main>
       <section>
-        <h2>Top Movies</h2>
         <TopMoviesCarousel movies={movies} />
         <div className="search-dropdown-container">
-        {searchSection}
-        {categoryDropDownMenu}
+          {searchSection}
+          {categoryDropDownMenu}
         </div>
         {movieList}
         {displayMoreButton}
@@ -157,6 +262,20 @@ function PageHome() {
           showModal={showModal}
           setShowModal={setShowModal}
         />
+      </section>
+      <section className="homepage-sliders">
+        {Object.keys(sliders).map((category) => (
+          <div key={category}>
+            <h2>{formatCategoryName(category)}</h2>
+            <Slider {...settings}>
+              {sliders[category].map((movie) => (
+                <div key={movie.id} className="movie-card">
+                  <MovieThumbnail movieObj={movie} />
+                </div>
+              ))}
+            </Slider>
+          </div>
+        ))}
       </section>
     </main>
   );
