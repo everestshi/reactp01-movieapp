@@ -21,7 +21,6 @@
 
 .nav-container {
   padding-inline: 15px;
-
 }
 
 .main-nav .nav-container {
@@ -100,7 +99,12 @@
   pointer-events: all;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 800px) {
+
+  .main-nav .nav-container {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+  }
 
   .navbar.active {
     padding-block: 5px;
@@ -113,19 +117,21 @@
   }
 
   .navbar {
+    width: 100%;
     all: unset;
-    /* margin-left: auto; */
+    display: flex;
     margin-inline: auto;
   }
 
   .navbar-list {
     all: unset;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 4rem;
     list-style-type: none;
+    padding-left: unset;
   }
-
   
   .navbar-link {
     border-bottom: none;
