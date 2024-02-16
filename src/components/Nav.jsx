@@ -35,8 +35,12 @@ const Nav = () => {
   return (
     <div className={`main-nav ${isNavActive ? 'active' : ''}`}>
       <div className="nav-container">
+        <div>
         <div className="overlay" onClick={toggleNav}></div>
         <img src="../../assets/images/MovieLogo.png" alt="Movie Logo" />
+        
+        </div>
+        <div>
         <button className="menu-open-btn" onClick={toggleNav}>
           <FontAwesomeIcon icon={faBars} />
         </button>
@@ -63,6 +67,7 @@ const Nav = () => {
           </ul>
         </nav>
       </div>
+    </div>
     </div>
   );
 };

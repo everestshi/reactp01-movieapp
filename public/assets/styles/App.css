@@ -20,12 +20,11 @@ html {
 
 /* General Stylings */
 body {
-  margin: 0;
   font-family: 'Roboto', sans-serif;
   color: var(--text-theme-color);
   background-color: var(--bg-theme-color);
   min-width: 400px;
-  margin: 1em auto;
+  margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -69,7 +68,11 @@ p {
   line-height: 1.4;
 }
 
-
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 footer {
   padding: 1em 1.25em;
   border-top: 1px solid #aeaeae;
