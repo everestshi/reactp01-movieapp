@@ -9,6 +9,22 @@ const BANNER_SIZES = [
   [1281, '/original']
 ];
 
+// Function to fetch movie detail by movie id
+export const fetchMovie = async (id) => {
+  const API_URL = `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=${LANGUAGE}`;
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching movie:', error);
+    return null;
+  }
+};
+
 // Function to fetch popular movies
 export const fetchPopularMovies = async (page = 1) => {
   const API_URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`;
@@ -122,8 +138,6 @@ export const fetchTrailerUrl = async (id) => {
       return obj.type === 'Trailer' && obj.site === 'YouTube';
     })[0].key;
     return `https://www.youtube.com/embed/${youtubeId}?&controls=1&modestbranding=1&playsinline=1&rel=0&autoplay=1`;
-
-    // return data.results;
   } catch (error) {
     console.error('Error fetching movie trailer:', error);
     return null;
@@ -157,6 +171,22 @@ export const fetchBannerUrl = async (id) => {
     // return data.results;
   } catch (error) {
     console.error('Error fetching movie banner url:', error);
+    return null;
+  }
+};
+
+// Function to fetch recommended movies based on movie id
+export const fetchRecommendedMovies = async (id) => {
+  const API_URL = `${BASE_URL}/movie/${id}/recommendations?api_key=${API_KEY}&language=${LANGUAGE}`;
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error('Error fetching recommended movie:', error);
     return null;
   }
 };
