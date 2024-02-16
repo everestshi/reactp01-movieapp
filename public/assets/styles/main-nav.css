@@ -102,8 +102,8 @@
 @media (min-width: 800px) {
 
   .main-nav .nav-container {
-    display: grid;
-    grid-template-columns: 100px 1fr;
+    display: flex;
+  justify-content: space-between;
   }
 
   .navbar.active {
