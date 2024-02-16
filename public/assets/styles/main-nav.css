@@ -30,9 +30,12 @@
   align-items: center;
 }
 
-.menu-open-btn {
+.menu-open-btn,
+.menu-close-btn {
   color: white;
   font-size: 40px;
+  background: transparent;
+  border: none;
 }
 
 .navbar {
@@ -61,11 +64,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.menu-close-btn {
-  color: white;
-  font-size: 25px;
 }
 
 .navbar-list {
