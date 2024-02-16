@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import '../../public/assets/styles/main-nav.css';
 
 const Nav = () => {
@@ -36,14 +38,13 @@ const Nav = () => {
         <div className="overlay" onClick={toggleNav}></div>
         <img src="../../assets/images/MovieLogo.png" alt="Movie Logo" />
         <button className="menu-open-btn" onClick={toggleNav}>
-          <ion-icon name="reorder-two"></ion-icon>
-          <ion-icon name="reorder-two"></ion-icon>
+          <FontAwesomeIcon icon={faBars} />
         </button>
         <nav className={`navbar ${isSideBarActive ? 'active' : ''}`}>
           <div className="navbar-top">
             <img src="../../assets/images/MovieLogo.png" alt="Movie Logo" />
             <button className='menu-close-btn' onClick={toggleNav}>
-              <ion-icon name="close-outline"></ion-icon>
+            <FontAwesomeIcon icon={faXmark} />
             </button>
           </div>
           <ul className='navbar-list'>
