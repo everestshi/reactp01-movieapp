@@ -8,6 +8,8 @@ import WatchlistButton from "./WatchlistButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay as outlinePlay } from "@fortawesome/free-regular-svg-icons";
 import TrailerModal from "./TrailerModal";
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+import { faClock as solidClock } from '@fortawesome/free-solid-svg-icons';
 
 function MovieThumbnail({ movieObj }) {
   const favs = useSelector((state) => state.favs.items);
@@ -84,15 +86,29 @@ function MovieThumbnail({ movieObj }) {
       onMouseLeave={handleMouseLeave}
     >
       <div className="thumbnail-image">
-        <div className="poster-overlay">{moviePoster}</div>
+        <div className="poster-overlay">
+          {moviePoster}
+          {(isFav || isOnWatchlist) && (
+            <div className="icon-container">
+              {isFav && <FontAwesomeIcon icon={solidHeart} />}
+              {isOnWatchlist && <FontAwesomeIcon icon={solidClock} />}
+            </div>
+          )}
+          </div>
         <p className={`thumbnail-image-title ${isHovered ? "hidden" : ""}`}>
           {movieObj.title}
         </p>
       </div>
       {isHovered && (
-      <div className="thumbnail-overlay" style={{ backgroundImage: `url(${movieImgBasePath + movieObj.poster_path})`,backgroundSize: "cover",
-      backgroundPosition: "center", }}>
-      <div className="overlay-content">
+        <div
+          className="thumbnail-overlay"
+          style={{
+            backgroundImage: `url(${movieImgBasePath + movieObj.poster_path})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <Link to={`/movie-details/${movieObj.id}`} className="overlay-content">
             <div className="overlay-top">
               <h3>{movieObj.title}</h3>
               <p>Rating: {movieObj.vote_average}</p>
@@ -101,7 +117,8 @@ function MovieThumbnail({ movieObj }) {
                 {truncateOverview(movieObj.overview, 150)}
               </p>
             </div>
-            <div className="overlay-buttons">
+          </Link>
+          <div className="overlay-buttons">
               <FontAwesomeIcon
                 icon={outlinePlay}
                 className="circle-play-icon overlay-trailer-btn"
@@ -121,7 +138,6 @@ function MovieThumbnail({ movieObj }) {
                 setShowModal={setShowModal}
               />
             </div>
-          </div>
         </div>
       )}
     </div>
