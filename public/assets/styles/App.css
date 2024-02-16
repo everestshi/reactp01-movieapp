@@ -27,10 +27,14 @@ body {
   min-width: 400px;
   margin: 1em auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 main {
   padding: 20px calc(var(--side-padding-main) * 1px);
+  flex-grow: 1;
 }
 
 img {
