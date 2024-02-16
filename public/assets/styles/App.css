@@ -167,7 +167,8 @@ footer p {
   
 }
 
-.search-bar:hover input {
+.search-bar:hover input, 
+.search-bar input:focus {
   width: 300px;
   border: 1px solid white;
 }
