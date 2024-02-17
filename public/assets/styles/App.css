@@ -541,7 +541,19 @@ select {
   color: black;
 }
 
-/* Adjust the styles according to your design preferences */
+/* Movie Carousels */
+.slick-prev {
+  left: 0 !important; /* Adjust distance from left edge */
+}
+
+.slick-next {
+  right: 0 !important; /* Adjust distance from right edge */
+}
+
+.homepage-sliders {
+  width: 90%;
+  margin: 0 auto;
+}
 
 .movies-grid {
   display: grid;
