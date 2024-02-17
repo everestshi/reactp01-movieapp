@@ -252,8 +252,8 @@ function PageHome() {
       <section>
         <TopMoviesCarousel movies={movies} />
         <div className="search-dropdown-container">
-          {searchSection}
-          {categoryDropDownMenu}
+        {/* {searchSection} */}
+        {categoryDropDownMenu}
         </div>
         {movieList}
         {displayMoreButton}
