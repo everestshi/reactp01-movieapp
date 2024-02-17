@@ -1,4 +1,3 @@
-import MovieThumbnail from './MovieThumbnail';
 import { movieImgBasePath } from '../globals/globalVariables';
 
 function MovieDetail({ movieDetailObj }) {
@@ -15,7 +14,7 @@ function MovieDetail({ movieDetailObj }) {
   );
 
   return (
-    <div className="movie-detail">
+    <>
       <div className="movie-detail-panel">
         {movieImage}
         <div className="movie-description">
@@ -26,7 +25,7 @@ function MovieDetail({ movieDetailObj }) {
           <p>{movieDetailObj.overview}</p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
