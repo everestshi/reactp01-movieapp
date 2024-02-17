@@ -1,4 +1,3 @@
-import MovieThumbnail from './MovieThumbnail';
 import { movieImgBasePath } from '../globals/globalVariables';
 
 function MovieDetail({ movieDetailObj }) {
