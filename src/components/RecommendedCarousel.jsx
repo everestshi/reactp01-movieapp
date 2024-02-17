@@ -19,23 +19,22 @@ export default function RecommendedCarousel({ movieId }) {
   }, []);
 
   function PrevArrow(props) {
-    const { className, style, onClick } = props;
+    const { onClick } = props;
     return (
       <FontAwesomeIcon
-        icon={faAngleRight}
-        className={className}
-        style={{ ...style }}
+        icon={faAngleLeft}
         onClick={onClick}
+        className="slider-arrow prev"
       />
     );
   }
   function NextArrow(props) {
-    const { className, style, onClick } = props;
+    const { onClick } = props;
     return (
       <FontAwesomeIcon
         icon={faAngleRight}
         onClick={onClick}
-        className="next-arrow"
+        className="slider-arrow next"
       />
     );
   }
@@ -43,12 +42,12 @@ export default function RecommendedCarousel({ movieId }) {
   const settings = {
     dots: false,
     infinite: true,
+    adaptiveHeight: false,
     speed: 500,
     slidesToShow: 8,
     slidesToScroll: 8,
-    initialSlide: 0,
-    // prevArrow: <PrevArrow />,
-    // nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
     responsive: [
       {
         breakpoint: 2000,
@@ -58,35 +57,35 @@ export default function RecommendedCarousel({ movieId }) {
         }
       },
       {
-        breakpoint: 1440,
+        breakpoint: 1600,
         settings: {
           slidesToShow: 5,
           slidesToScroll: 5
         }
       },
       {
-        breakpoint: 1024,
+        breakpoint: 1050,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 1
         }
       },
       {
-        breakpoint: 850,
+        breakpoint: 900,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1
         }
       },
       {
-        breakpoint: 650,
+        breakpoint: 700,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1
         }
       },
       {
-        breakpoint: 425,
+        breakpoint: 450,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1
