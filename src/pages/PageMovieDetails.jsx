@@ -79,16 +79,16 @@ function PageMovieDetails() {
         {getTrailerComponent()}
       </div>
 
-      <section>
+      <section id="movie-detail-section">
         <h2>Movie Details</h2>
         {!movieDetailObj ? (
           <p>
             Movie not found. <Link to="/">Return to home page</Link>.
           </p>
         ) : (
-          <div className="movie-single">
+          <>
             <MovieDetail movieDetailObj={movieDetailObj} />
-          </div>
+          </>
         )}
       </section>
       <section>

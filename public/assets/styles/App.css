@@ -620,12 +620,26 @@ select {
 }
 
 /* Detail Page Styling */
+.banner-section {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16/9;
+}
+
+.banner-section.play-trailer {
+  /* calculated by 100vw * 9 / 16 = 56vw */
+  height: 56vw;
+}
+
 .banner-container {
   position: relative;
   width: 100%;
   height: 100%;
 
   .banner {
+    box-sizing: border-box;
+    width: 100%;
     transform: translateX(calc(var(--side-padding-main) * -1px));
     aspect-ratio: 16 / 9;
     --webkit-mask-image: var(--gradient-mask);
@@ -641,7 +655,7 @@ select {
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    bottom: 0;
+    bottom: 50%;
     font-size: 50px;
     text-align: center;
     transition: all 0.3s ease;
@@ -666,31 +680,59 @@ select {
   }
 }
 
-.banner-section {
-  box-sizing: border-box;
-  width: 100%;
-  /* set container height to a fraction of actual height so image overflow downwards and act as a
-  gradient background (important: height must be in physical units like px or vw and not %) */
-  height: 25vw;
-  aspect-ratio: 16/9;
-  transition: all 1s ease;
-}
-.banner-section.play-trailer {
-  /* calculated by 100vw * 9 / 16 = 56vw */
-  height: 56vw;
-}
-
 .detail-page-trailer {
   width: 100%;
   aspect-ratio: 16 / 9;
 }
 
+#movie-detail-section {
+  margin: auto 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
 .movie-detail-panel {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
+  margin-bottom: 20px;
+
+  .movie-description {
+    max-width: 500px;
+  }
 
   img {
     max-width: var(--movie-poster-width) !important;
+    margin: 0 !important;
+  }
+}
+
+@media (min-width: 500px) {
+  .banner-section {
+    /* set container height to a fraction of actual height so image overflow downwards and act as a
+    gradient background (important: height must be in physical units like px or vw and not %) */
+    height: 25vw;
+    transition: all 1s ease;
+  }
+
+  .banner-container {
+    .circle-play-icon {
+      bottom: 0;
+    }
+  }
+
+  #movie-detail-section {
+    h2 {
+      text-align: start;
+    }
+
+    .movie-detail-panel {
+      flex-direction: row;
+      align-items: start;
+    }
   }
 }
 
@@ -727,11 +769,11 @@ select {
     font-size: calc(var(--arrow-size) * 1px);
 
     &.prev {
-      left: -25px;
+      left: -20px;
     }
 
     &.next {
-      right: -25px;
+      right: -20px;
     }
   }
 }
