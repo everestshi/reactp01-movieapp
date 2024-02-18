@@ -15,11 +15,12 @@ function PageFavs() {
     <main>
       <section>
         <h2>Favourite Movies</h2>
+        <div className="title-bottom-border"></div>
         {favs.length < 1 ? (
           <div className="border-container">
             <img
               className="popcorn-img"
-              src="../../public/assets/images/CutePopcorn2.jpg"
+              src="../../public/assets/images/CutePopcorn2.png"
               alt="Cute Popcorn"
             />
             <div className="empty-description">
