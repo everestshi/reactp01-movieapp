@@ -10,6 +10,7 @@ import PageAbout from '../pages/PageAbout';
 import PageFavs from '../pages/PageFavs';
 import PageWatchlist from '../pages/PageWatchlist';
 import PageNotFound from '../pages/PageNotFound';
+import PageSearch from '../pages/PageSearch';
 import { appTitle, appAuthor } from '../globals/globalVariables';
 
 function AppRouter() {
@@ -24,6 +25,7 @@ function AppRouter() {
           <Route path="/about" element={<PageAbout />} />
           <Route path="/favs" element={<PageFavs />} />
           <Route path="/watchlist" element={<PageWatchlist />} />
+          <Route path="/search" element={<PageSearch />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
 
