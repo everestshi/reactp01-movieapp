@@ -250,10 +250,12 @@ function PageHome() {
   return (
     <main>
       <section>
-        <TopMoviesCarousel movies={movies} />
+        <div className="top-movies-carousel">
+          <TopMoviesCarousel movies={movies} />
+        </div>
         <div className="search-dropdown-container">
-        {/* {searchSection} */}
-        {categoryDropDownMenu}
+          {/* {searchSection} */}
+          {categoryDropDownMenu}
         </div>
         {movieList}
         {displayMoreButton}
