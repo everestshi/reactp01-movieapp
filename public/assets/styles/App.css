@@ -156,6 +156,16 @@ footer p {
   background: none;
 }
 
+.page-search {
+  margin-bottom: 20px;
+}
+
+input.search-term-page {
+  background: transparent;
+  color: white;
+  margin-bottom: 20px;
+}
+
 .search-bar {
   height: 30px;
   display: flex;
