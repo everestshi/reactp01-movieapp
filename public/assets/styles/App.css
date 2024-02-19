@@ -5,7 +5,6 @@
   --movie-poster-width: 250px;
   --gradient-mask: linear-gradient(rgba(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
   /* in px */
-  --side-padding-main: 10;
 }
 
 /* Resets */
@@ -32,7 +31,6 @@ body {
 }
 
 main {
-  padding: 20px calc(var(--side-padding-main) * 1px);
   flex-grow: 1;
 }
 
@@ -72,7 +70,9 @@ p {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
+
 footer {
   padding: 1em 1.25em;
   border-top: 1px solid #aeaeae;
@@ -366,8 +366,18 @@ select {
 /* Home Page Styling */
 
 /* Movie Carousel */
+
 .movie-slide {
   position: relative;
+  width: 100vw;
+}
+
+.carousel-movie-overview {
+  display: none;
+}
+
+.carousel-movie-genres {
+  opacity: 0.7;
 }
 
 .movie-overlay {
@@ -391,24 +401,31 @@ select {
 
 .movie-info {
   z-index: 1;
-  margin-bottom: 100px;
-  width: 50%;
+  margin: 0 auto 10rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .movie-info h2 {
-  font-size: 50px;
-  margin-bottom: 10px;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
 }
 
 .movie-info p {
-  font-size: 16px;
+  font-size: 0.7rem;
   line-height: 1.5;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  text-overflow: ellipsis;
 }
 
 .buttons {
   display: flex;
   gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .watch-trailer-btn-carousel,
@@ -432,26 +449,6 @@ select {
 .movie-overlay .outline-heart,
 .movie-overlay .outline-clock {
   margin: 0;
-}
-
-.watch-trailer-btn,
-.view-details-btn,
-.fav-btn,
-.watchlist-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  background-color: #e50914; /* Netflix red */
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.watch-trailer-btn:hover,
-.view-details-btn:hover,
-.fav-btn:hover,
-.watchlist-btn:hover {
-  background-color: #bf0813; /* Darker shade of Netflix red on hover */
 }
 
 .button-icon {
@@ -832,5 +829,12 @@ h2 {
     &.next {
       right: -20px;
     }
+  }
+}
+
+
+@media (min-width: 786px) {
+  .carousel-movie-overview {
+    display: flex;
   }
 }

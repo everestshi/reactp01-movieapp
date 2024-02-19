@@ -4,22 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "../../public/assets/styles/main-nav.css";
-import { searchMovies } from "../data/tmdb-data";
 
 const Nav = () => {
   const [isSideBarActive, setIsSideBarActive] = useState(false);
   const [isNavActive, setIsNavActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
-
-  const handleSearch = async () => {
-    try {
-      const searchResults = await searchMovies(searchQuery);
-      setMovies(searchResults); // Update the movies state with search results
-    } catch (error) {
-      console.error("Error performing search:", error);
-    }
-  };
 
   const searchSection = (
     <div className="search-container">
@@ -30,11 +20,12 @@ const Nav = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search movie titles"
         />
-        <FontAwesomeIcon
-          icon={faMagnifyingGlass}
-          className="search-icon"
-          onClick={handleSearch}
-        />
+        <NavLink to={`/search?query=${encodeURIComponent(searchQuery)}`}>
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className="search-icon"
+          />
+        </NavLink>
       </div>
     </div>
   );
