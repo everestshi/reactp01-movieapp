@@ -163,7 +163,8 @@ footer p {
 input.search-term-page {
   background: transparent;
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 4px;
+  margin-left: 14px;
 }
 
 .search-bar {
