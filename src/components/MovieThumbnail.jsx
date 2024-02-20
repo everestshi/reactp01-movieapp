@@ -44,8 +44,8 @@ function MovieThumbnail({ movieObj, allowRedirect = true }) {
 
   const movieImage = (
     <img
-      src={movieImgBasePath + movieObj.poster_path}
-      alt={movieObj.title}
+    src={`https://image.tmdb.org/t/p/original/${movieObj.poster_path}`}
+    alt={movieObj.title}
       className="movie"
     ></img>
   );
@@ -94,9 +94,11 @@ function MovieThumbnail({ movieObj, allowRedirect = true }) {
             <div className="overlay-top">
               <h3>{movieObj.title}</h3>
               <p>Rating: {movieObj.vote_average}</p>
+              <div className="thumbnail-overview-container">
               <p className="overview">
                 {truncateOverview(movieObj.overview, 150)}
               </p>
+              </div>
             </div>
           </Link>
           <div className="overlay-buttons">
