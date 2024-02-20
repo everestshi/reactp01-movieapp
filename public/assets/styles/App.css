@@ -788,6 +788,7 @@ h2 {
   gap: 2rem;
   padding: 30px;
   background: linear-gradient(180deg, #1a1a1a 0%, rgb(37, 47, 53) 100%);
+  flex-direction: column;
 }
 
 .about-container-section {
@@ -795,57 +796,6 @@ h2 {
   border-radius: 25px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #252525;
-  opacity: 0; /* Initially hide the sections */
-}
-
-/* Left side animation */
-.about-container-section.left {
-  animation: slideInLeft 0.7s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-@keyframes slideInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%); /* Start position for left slide */
-  }
-  70% {
-    transform: translateX(5%); /* Bounce effect */
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0); /* End position (slide in from left) */
-  }
-}
-
-/* Right side animation */
-.about-container-section.right {
-  animation: slideInRight 0.7s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-@keyframes slideInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(100%); /* Start position for right slide */
-  }
-  70% {
-    transform: translateX(-5%); /* Bounce effect */
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0); /* End position (slide in from right) */
-  }
-}
-
-.about-container-section:nth-child(odd) {
-  animation-delay: 0.3s; /* Delay animation for odd sections */
-}
-
-.about-container-section:nth-child(even) {
-  animation-delay: 0.3s; /* Delay animation for even sections */
-}
-
-.about-container-section:hover {
-  transform: translateY(-5px);
 }
 
 .db-logo {
@@ -937,4 +887,70 @@ p {
   .carousel-movie-overview {
     display: flex;
   }
+
+  .about-container {
+    display: flex;
+    gap: 2rem;
+    padding: 30px;
+    background: linear-gradient(180deg, #1a1a1a 0%, rgb(37, 47, 53) 100%);
+    flex-direction: row;
+  }
+  .about-container-section {
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #252525;
+    opacity: 0; /* Initially hide the sections */
+  }
+  
+  /* Left side animation */
+  .about-container-section.left {
+    animation: slideInLeft 0.7s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  @keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%); /* Start position for left slide */
+    }
+    70% {
+      transform: translateX(5%); /* Bounce effect */
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0); /* End position (slide in from left) */
+    }
+  }
+  
+  /* Right side animation */
+  .about-container-section.right {
+    animation: slideInRight 0.7s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%); /* Start position for right slide */
+    }
+    70% {
+      transform: translateX(-5%); /* Bounce effect */
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0); /* End position (slide in from right) */
+    }
+  }
+  
+  .about-container-section:nth-child(odd) {
+    animation-delay: 0.3s; /* Delay animation for odd sections */
+  }
+  
+  .about-container-section:nth-child(even) {
+    animation-delay: 0.3s; /* Delay animation for even sections */
+  }
+  
+  .about-container-section:hover {
+    transform: translateY(-5px);
+  }
+  
 }
