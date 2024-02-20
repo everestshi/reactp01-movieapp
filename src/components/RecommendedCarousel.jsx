@@ -94,13 +94,11 @@ export default function RecommendedCarousel({ movieId }) {
     ]
   };
 
-  return (
+  return !recommendedMovies || !recommendedMovies.length > 0 ? null : (
     <Slider {...settings} className="recommended-carousel">
-      {!recommendedMovies
-        ? null
-        : recommendedMovies.map((movie) => {
-            return <MovieThumbnail key={movie.id} movieObj={movie} />;
-          })}
+      {recommendedMovies.map((movie) => {
+        return <MovieThumbnail key={movie.id} movieObj={movie} />;
+      })}
     </Slider>
   );
 }
