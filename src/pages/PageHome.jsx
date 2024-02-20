@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { appTitle } from "../globals/globalVariables";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { faCirclePlay as outlinePlay } from "@fortawesome/free-regular-svg-icons";
-import { faCirclePlay as solidPlay } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from 'react';
+import { appTitle } from '../globals/globalVariables';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlay as outlinePlay } from '@fortawesome/free-regular-svg-icons';
+import { faCirclePlay as solidPlay } from '@fortawesome/free-solid-svg-icons';
 import {
   fetchPopularMovies,
   fetchTopRatedMovies,
@@ -12,27 +12,27 @@ import {
   searchMovies,
   fetchMovieGenres,
   fetchTrailerUrl,
-  fetchBannerUrl,
-} from "../data/tmdb-data";
-import MovieThumbnail from "../components/MovieThumbnail";
-import TrailerModal from "../components/TrailerModal";
-import TopMoviesCarousel from "../components/TopMoviesCarousel";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+  fetchBannerUrl
+} from '../data/tmdb-data';
+import MovieThumbnail from '../components/MovieThumbnail';
+import TrailerModal from '../components/TrailerModal';
+import TopMoviesCarousel from '../components/TopMoviesCarousel';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 function PageHome() {
   const [movies, setMovies] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("popular");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState('popular');
+  const [searchQuery, setSearchQuery] = useState('');
   const [displayCount, setDisplayCount] = useState(12);
   const [totalMoviesCount, setTotalMoviesCount] = useState(0);
-  const [previousCategory, setPreviousCategory] = useState("");
+  const [previousCategory, setPreviousCategory] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [trailerUrl, setTrailerUrl] = useState("");
-  const categories = ["popular", "topRated", "nowPlaying", "upcoming"];
+  const [trailerUrl, setTrailerUrl] = useState('');
+  const categories = ['popular', 'topRated', 'nowPlaying', 'upcoming'];
   const [remainingCategories, setRemainingCategories] = useState([]);
   const [sliders, setSliders] = useState({});
 
@@ -52,13 +52,13 @@ function PageHome() {
         setTotalMoviesCount(fetchedMovies.length);
         moviesToFetch = fetchedMovies.slice(0, displayCount);
       } else {
-        if (selectedCategory === "popular") {
+        if (selectedCategory === 'popular') {
           fetchedMovies = await fetchPopularMovies();
-        } else if (selectedCategory === "topRated") {
+        } else if (selectedCategory === 'topRated') {
           fetchedMovies = await fetchTopRatedMovies();
-        } else if (selectedCategory === "nowPlaying") {
+        } else if (selectedCategory === 'nowPlaying') {
           fetchedMovies = await fetchNowPlayingMovies();
-        } else if (selectedCategory === "upcoming") {
+        } else if (selectedCategory === 'upcoming') {
           fetchedMovies = await fetchUpcomingMovies();
         }
         setTotalMoviesCount(fetchedMovies.length);
@@ -99,16 +99,16 @@ function PageHome() {
       for (const category of remainingCategories) {
         let movies = [];
         switch (category) {
-          case "popular":
+          case 'popular':
             movies = await fetchPopularMovies();
             break;
-          case "topRated":
+          case 'topRated':
             movies = await fetchTopRatedMovies();
             break;
-          case "nowPlaying":
+          case 'nowPlaying':
             movies = await fetchNowPlayingMovies();
             break;
-          case "upcoming":
+          case 'upcoming':
             movies = await fetchUpcomingMovies();
             break;
           default:
@@ -195,45 +195,45 @@ function PageHome() {
         breakpoint: 2000,
         settings: {
           slidesToShow: 6,
-          slidesToScroll: 1,
-        },
+          slidesToScroll: 1
+        }
       },
       {
         breakpoint: 1440,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 1,
-        },
+          slidesToScroll: 1
+        }
       },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 1,
-        },
+          slidesToScroll: 1
+        }
       },
       {
         breakpoint: 850,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
-        },
+          slidesToScroll: 1
+        }
       },
       {
         breakpoint: 650,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
-        },
+          slidesToScroll: 1
+        }
       },
       {
         breakpoint: 425,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
 
   // Function to format category names with separate words and capitalize first letter of every word
@@ -241,7 +241,7 @@ function PageHome() {
     return category
       .split(/(?=[A-Z])/)
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
+      .join(' ');
   };
 
   return (
