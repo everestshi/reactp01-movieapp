@@ -19,7 +19,7 @@ html {
 
 /* General Stylings */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: var(--text-theme-color);
   background-color: var(--bg-theme-color);
   min-width: 400px;
@@ -32,6 +32,9 @@ body {
 
 main {
   flex-grow: 1;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 img {
@@ -51,7 +54,7 @@ a {
 h2,
 h3,
 h4 {
-  font-family: 'Alatsi', sans-serif;
+  font-family: "Alatsi", sans-serif;
 }
 
 h1,
@@ -222,7 +225,7 @@ ul {
 /* Search and Drop down menu  */
 .search-dropdown-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -244,24 +247,23 @@ select {
 
 /* Display more button */
 .display-more-btn {
-  color: white;
-  font-weight: 550;
-  text-transform: uppercase;
-  letter-spacing: 2px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 16px 30px;
-  border: 2px solid #007fff;
-  border-radius: 50px;
-  transition-duration: 0.3s;
-  background-color: #2f3030;
+  justify-content: center;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: rgb(255, 140, 0);
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  margin: 1rem auto 3rem;
+  transition: background-color 0.2s ease;
+  border: none;
 }
 
 .display-more-btn:is(:hover, :focus) {
-  background: #007fff;
-  color: black;
-  font-weight: 550;
+  background-color: rgb(73, 0, 138);
 }
 
 .centered {
@@ -277,7 +279,7 @@ select {
   padding-bottom: 20px;
 }
 .border-container {
-  --b: 2px;  /* border thickness */
+  --b: 2px; /* border thickness */
   --s: 30px; /* size of the dashes */
   --c1: #007fff;
   --c2: #2f3030;
@@ -291,18 +293,15 @@ select {
   align-items: center;
 }
 .border-container::before {
-  content:"";
+  content: "";
   position: absolute;
   inset: 0;
   padding: var(--b);
-  background: 
-    repeating-conic-gradient(var(--c1) 0 25%,var(--c2) 0 50%) 
-    0 0/var(--s) var(--s) round;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
+  background: repeating-conic-gradient(var(--c1) 0 25%, var(--c2) 0 50%) 0 0 /
+    var(--s) var(--s) round;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  mask-composite: exclude;
   pointer-events: none;
 }
 
@@ -311,14 +310,21 @@ select {
   padding: 40px;
 }
 
-.empty-description p:first-child{
+.empty-description p:first-child {
   margin-bottom: 5px;
 }
 
-/* Crosss-Page Component Stylings */
+/* Cross-Page Component Stylings */
 .movie-thumbnail {
   display: inline-block;
   position: relative;
+}
+
+.heart:hover,
+.clock:hover {
+  font-size: 3.5vw;
+  max-width: 40px;
+  max-height: 40px;
 }
 
 .thumbnail-btns {
@@ -331,7 +337,7 @@ select {
 
 .outline-heart {
   box-sizing: border-box;
-  margin: 0.5rem 0.5rem 0.3rem auto;
+  margin: auto auto 0.5rem 0.3rem;
   right: 0;
   font-size: 30px;
   color: white;
@@ -339,7 +345,7 @@ select {
 
 .solid-heart {
   box-sizing: border-box;
-  margin: 0.5rem 0.5rem 0.3rem auto;
+  margin: auto auto 0.5rem 0.3rem;
   right: 0;
   font-size: 30px;
   color: red;
@@ -347,7 +353,7 @@ select {
 
 .outline-clock {
   box-sizing: border-box;
-  margin: 0.3rem 0.5rem 0.5rem auto;
+  margin: auto auto 0.5rem 0.3rem;
   right: 0;
   font-size: 30px;
   color: white;
@@ -355,22 +361,23 @@ select {
 
 .solid-clock {
   box-sizing: border-box;
-  margin: 0.3rem 0.5rem 0.5rem auto;
+  margin: auto auto 0.5rem 0.3rem;
   right: 0;
   font-size: 30px;
-  color: rgb(255, 140, 0);
-}
-
-.heart:hover,
-.clock:hover {
-  font-size: 3.5vw;
-  max-width: 40px;
-  max-height: 40px;
+  color: red;
 }
 
 .outline-heart:hover,
 .outline-clock:hover {
-  color: rgb(64, 224, 208);
+  color: rgb(255, 140, 0);
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.solid-clock:hover,
+.solid-heart:hover {
+  font-size: 40px;
+  cursor: pointer;
 }
 
 /* Home Page Styling */
@@ -425,7 +432,7 @@ select {
 }
 
 .movie-info p {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   line-height: 1.5;
   margin-bottom: 20px;
   text-overflow: ellipsis;
@@ -456,16 +463,35 @@ select {
   margin-right: 10px;
 }
 
-.movie-overlay .outline-heart,
-.movie-overlay .outline-clock {
-  margin: 0;
-}
-
 .button-icon {
   margin-right: 5px;
 }
 
 /* Movie Grid */
+
+.search-dropdown-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.search-dropdown-container select {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+  background-color: rgb(255, 140, 0);
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  align-self: center; /* Center vertically */
+}
+
+.search-dropdown-container select:focus {
+}
 
 /* Add this CSS to your existing styles.css file or create a new CSS file */
 
@@ -478,6 +504,12 @@ select {
 .thumbnail-image {
   position: relative;
   z-index: 1;
+}
+
+.thumbnail-image-title {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 1rem;
 }
 
 .poster-overlay a img {
@@ -506,7 +538,7 @@ select {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black overlay */
+  background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black overlay */
   opacity: 0;
   display: flex;
   flex-direction: column;
@@ -516,13 +548,13 @@ select {
 
 /* Background image layer */
 .thumbnail-overlay::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black overlay */
+  background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black overlay */
   opacity: 0.8; /* Adjust the opacity as needed */
   background-size: cover; /* Make the background image cover the entire area */
   background-position: center; /* Center the background image */
@@ -538,7 +570,7 @@ select {
 }
 
 .overlay-trailer-btn {
-  margin: 0.5rem 0.5rem 0.3rem auto;
+  margin: auto auto 0.5rem 0.3rem;
   right: 0;
   font-size: 30px;
   color: white;
@@ -546,7 +578,7 @@ select {
 
 .overlay-trailer-btn:hover {
   font-size: 37px;
-  color: rgb(127, 255, 238);
+  color: rgb(255, 140, 0);
   cursor: pointer;
 }
 
@@ -564,7 +596,7 @@ select {
 
 .overlay-content h3 {
   font-size: 1.5rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
 .overlay-content p {
@@ -575,7 +607,7 @@ select {
 .overlay-buttons {
   margin-top: auto;
   margin: auto 0 20px 20px;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .overlay-buttons button {
@@ -585,12 +617,6 @@ select {
   padding: 5px 10px;
   margin: 0 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.overlay-buttons button:hover {
-  background-color: white;
-  color: black;
 }
 
 /* Movie Carousels */
@@ -602,41 +628,71 @@ select {
   right: 0 !important; /* Adjust distance from right edge */
 }
 
+.homepage-category-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 20px 0 20px 5px;
+  text-align: left;
+}
+
 .homepage-sliders {
   width: 90%;
   margin: 0 auto;
 }
 
-.movies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, var(--movie-poster-width));
-  gap: 20px;
-  justify-content: flex-start;
-  margin-bottom: 10px;
+.homepage-sliders {
+  --img-height: 300;
+  --arrow-size: 40;
+
+  width: 95%;
+  margin: auto;
+
+  .slick-track > div {
+    display: grid;
+    place-items: center;
+    margin: auto;
+  }
 
   img {
-    width: var(--movie-poster-width);
+    display: flex;
+    margin: 0;
+    height: calc(var(--img-height) * 1px);
+    object-fit: cover;
+  }
+
+  .slider-arrow {
+    position: absolute;
+    display: block;
+    cursor: pointer;
+    top: calc((var(--img-height) - var(--arrow-size)) / 2 * 1px);
+    color: orange;
+    font-size: calc(var(--arrow-size) * 1px);
+
+    &.prev {
+      left: -10px;
+      z-index: 10;
+    }
+
+    &.next {
+      right: -10px;
+      z-index: 10;
+    }
   }
 }
 
 .responsive-movies-grid {
+  padding: 0 1rem;
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(var(--movie-poster-width), 1fr)
-  );
-  gap: 2rem;
-  justify-content: space-evenly;
-  margin-bottom: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 
-  img {
-    min-width: var(--movie-poster-width);
-  }
+  gap: 1rem;
+  justify-content: space-evenly;
 }
 
 .movie-card {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 }
 
 .watch-trailer-btn {
@@ -842,9 +898,687 @@ h2 {
   }
 }
 
-
 @media (min-width: 786px) {
+  /* shared */
+  .outline-heart {
+    box-sizing: border-box;
+    margin: auto auto 0.5rem 0.3rem;
+    right: 0;
+    font-size: 28px;
+    color: white;
+  }
+
+  .solid-heart {
+    box-sizing: border-box;
+    margin: auto auto 0.5rem 0.3rem;
+    right: 0;
+    font-size: 28px;
+    color: red;
+  }
+
+  .outline-clock {
+    box-sizing: border-box;
+    margin: auto auto 0.5rem 0.3rem;
+    right: 0;
+    font-size: 28px;
+    color: white;
+  }
+
+  .solid-clock {
+    box-sizing: border-box;
+    margin: auto auto 0.5rem 0.3rem;
+    right: 0;
+    font-size: 28px;
+    color: red;
+  }
+
+  .outline-heart:hover,
+  .outline-clock:hover {
+    color: rgb(255, 140, 0);
+    font-size: 35px;
+    cursor: pointer;
+  }
+
+  .solid-clock:hover,
+  .solid-heart:hover {
+    font-size: 35px;
+    cursor: pointer;
+  }
+
   .carousel-movie-overview {
     display: flex;
+  }
+
+  /* Movie Carousel */
+
+  .carousel-movie-overview {
+    display: flex;
+  }
+
+  .movie-info {
+    z-index: 1;
+    margin: 0;
+    margin-left: 1rem;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    padding-bottom: 20px;
+  }
+
+  .movie-info h2 {
+    text-align: left;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .movie-info p {
+    font-size: 0.6rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    text-overflow: ellipsis;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .watch-trailer-btn-carousel,
+  .more-info-btn-carousel {
+    all: unset;
+    background-color: rgb(255, 140, 0);
+    color: white;
+    padding: 8px 10px;
+    transition: background-color 0.3s;
+    font-size: small;
+  }
+
+  .watch-trailer-btn-carousel:hover,
+  .more-info-btn-carousel:hover {
+    background-color: rgb(73, 0, 138);
+  }
+
+  .movie-overlay .circle-play-icon {
+    margin-right: 10px;
+  }
+
+  .button-icon {
+    margin-right: 5px;
+  }
+
+  /* Movie Grid */
+
+  .search-dropdown-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+
+  .search-dropdown-container select {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    background-color: rgb(255, 140, 0);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    align-self: center; /* Center vertically */
+  }
+
+  .search-dropdown-container select:focus {
+  }
+
+  /* Add this CSS to your existing styles.css file or create a new CSS file */
+
+  .movie-thumbnail {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+  }
+
+  .thumbnail-image {
+    position: relative;
+    z-index: 1;
+  }
+
+  .thumbnail-image-title {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .poster-overlay a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Make the image cover the entire area of its container */
+  }
+
+  .poster-overlay {
+    position: relative;
+  }
+
+  .icon-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    color: red;
+    gap: 5px;
+  }
+
+  .thumbnail-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black overlay */
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+  }
+
+  /* Background image layer */
+  .thumbnail-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black overlay */
+    opacity: 0.8; /* Adjust the opacity as needed */
+    background-size: cover; /* Make the background image cover the entire area */
+    background-position: center; /* Center the background image */
+    z-index: -1; /* Send the background image layer to the bottom */
+  }
+
+  .thumbnail-overlay:hover {
+    opacity: 1;
+  }
+
+  .movie-thumbnail:hover .thumbnail-image-title {
+    visibility: hidden;
+  }
+
+  .overlay-trailer-btn {
+    margin: auto auto 0.5rem 0.3rem;
+    right: 0;
+    font-size: 28px;
+    color: white;
+  }
+
+  .overlay-trailer-btn:hover {
+    font-size: 35px;
+    color: rgb(255, 140, 0);
+    cursor: pointer;
+  }
+
+  .overlay-content {
+    text-align: left;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .overlay-top {
+    margin: 20px;
+  }
+
+  .overlay-content h3 {
+    font-size: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .overlay-content p {
+    font-size: 0.6rem;
+    margin: 1rem 0;
+  }
+
+  .overlay-buttons {
+    margin-top: auto;
+    margin: auto 0 20px 20px;
+    z-index: 10;
+  }
+
+  .overlay-buttons button {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  /* Movie Carousels */
+  .slick-prev {
+    left: 0 !important; /* Adjust distance from left edge */
+  }
+
+  .slick-next {
+    right: 0 !important; /* Adjust distance from right edge */
+  }
+
+  .homepage-category-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 20px 0 20px 5px;
+    text-align: left;
+  }
+
+  .homepage-sliders {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .homepage-sliders {
+    --img-height: 300;
+    --arrow-size: 40;
+
+    width: 95%;
+    margin: auto;
+
+    .slick-track > div {
+      display: grid;
+      place-items: center;
+      margin: auto;
+    }
+
+    img {
+      display: flex;
+      margin: 0;
+      height: calc(var(--img-height) * 1px);
+      object-fit: cover;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      display: block;
+      cursor: pointer;
+      top: calc((var(--img-height) - var(--arrow-size)) / 2 * 1px);
+      color: orange;
+      font-size: calc(var(--arrow-size) * 1px);
+
+      &.prev {
+        left: -10px;
+        z-index: 10;
+      }
+
+      &.next {
+        right: -10px;
+        z-index: 10;
+      }
+    }
+  }
+
+  .responsive-movies-grid {
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+
+    gap: 2rem;
+    justify-content: space-evenly;
+  }
+
+  .movie-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* shared */
+  .outline-heart {
+    box-sizing: border-box;
+    margin: auto auto 0.5rem 0.3rem;
+    right: 0;
+    font-size: 30px;
+    color: white;
+  }
+
+  .solid-heart {
+    box-sizing: border-box;
+    margin: auto auto 0.5rem 0.3rem;
+    right: 0;
+    font-size: 28px;
+    color: red;
+  }
+
+  .outline-clock {
+    box-sizing: border-box;
+    margin: auto auto 0.5rem 0.3rem;
+    right: 0;
+    font-size: 28px;
+    color: white;
+  }
+
+  .solid-clock {
+    box-sizing: border-box;
+    margin: auto auto 0.5rem 0.3rem;
+    right: 0;
+    font-size: 28px;
+    color: red;
+  }
+
+  .outline-heart:hover,
+  .outline-clock:hover {
+    color: rgb(255, 140, 0);
+    font-size: 35px;
+    cursor: pointer;
+  }
+
+  .solid-clock:hover,
+  .solid-heart:hover {
+    font-size: 35px;
+    cursor: pointer;
+  }
+
+  /* Movie Carousel */
+
+  .top-movies-carousel {
+    position: relative;
+    width: calc(100vw - 20px); /* Set the width to 100% of the viewport width */
+    left: 50%; /* Move the element to the center */
+    transform: translateX(-50%); /* Adjust to center the element horizontally */
+  }
+
+  .carousel-movie-overview {
+    display: flex;
+  }
+
+  .movie-info {
+    z-index: 1;
+    margin: 0;
+    margin-left: 1rem;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    padding-bottom: 20px;
+  }
+
+  .movie-info h2 {
+    text-align: left;
+    font-size: 2.3rem;
+    margin-bottom: 40px;
+  }
+
+  .movie-info p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-overflow: ellipsis;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .watch-trailer-btn-carousel,
+  .more-info-btn-carousel {
+    all: unset;
+    background-color: rgb(255, 140, 0);
+    color: white;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+    font-size: large;
+  }
+
+  .watch-trailer-btn-carousel:hover,
+  .more-info-btn-carousel:hover {
+    background-color: rgb(73, 0, 138);
+  }
+
+  .movie-overlay .circle-play-icon {
+    margin-right: 10px;
+  }
+
+  .button-icon {
+    margin-right: 5px;
+  }
+
+  /* Movie Grid */
+
+  .search-dropdown-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+
+  .search-dropdown-container select {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    background-color: rgb(255, 140, 0);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    align-self: center; /* Center vertically */
+  }
+
+  .search-dropdown-container select:focus {
+  }
+
+  /* Add this CSS to your existing styles.css file or create a new CSS file */
+
+  .movie-thumbnail {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+  }
+
+  .thumbnail-image {
+    position: relative;
+    z-index: 1;
+  }
+
+  .thumbnail-image-title {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .poster-overlay a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Make the image cover the entire area of its container */
+  }
+
+  .poster-overlay {
+    position: relative;
+  }
+
+  .icon-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    color: red;
+    gap: 5px;
+  }
+
+  .thumbnail-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black overlay */
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+  }
+
+  /* Background image layer */
+  .thumbnail-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black overlay */
+    opacity: 0.8; /* Adjust the opacity as needed */
+    background-size: cover; /* Make the background image cover the entire area */
+    background-position: center; /* Center the background image */
+    z-index: -1; /* Send the background image layer to the bottom */
+  }
+
+  .thumbnail-overlay:hover {
+    opacity: 1;
+  }
+
+  .movie-thumbnail:hover .thumbnail-image-title {
+    visibility: hidden;
+  }
+
+  .overlay-trailer-btn {
+    margin: auto auto 0.5rem 0.3rem;
+    right: 0;
+    font-size: 28px;
+    color: white;
+  }
+
+  .overlay-trailer-btn:hover {
+    font-size: 35px;
+    color: rgb(255, 140, 0);
+    cursor: pointer;
+  }
+
+  .overlay-content {
+    text-align: left;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .overlay-top {
+    margin: 20px;
+  }
+
+  .overlay-content h3 {
+    font-size: 1.2rem;
+    padding-bottom: 1rem;
+  }
+
+  .overlay-content p {
+    font-size: 0.7rem;
+    margin: 1rem 0;
+  }
+
+  .overlay-buttons {
+    margin-top: auto;
+    margin: auto 0 20px 20px;
+    z-index: 10;
+  }
+
+  .overlay-buttons button {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  /* Movie Carousels */
+  .slick-prev {
+    left: 0 !important; /* Adjust distance from left edge */
+  }
+
+  .slick-next {
+    right: 0 !important; /* Adjust distance from right edge */
+  }
+
+  .homepage-category-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 20px 0 20px 5px;
+    text-align: left;
+  }
+
+  .homepage-sliders {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .homepage-sliders {
+    --img-height: 300;
+    --arrow-size: 40;
+
+    width: 95%;
+    margin: auto;
+
+    .slick-track > div {
+      display: grid;
+      place-items: center;
+      margin: auto;
+    }
+
+    img {
+      display: flex;
+      margin: 0;
+      height: calc(var(--img-height) * 1px);
+      object-fit: cover;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      display: block;
+      cursor: pointer;
+      top: calc((var(--img-height) - var(--arrow-size)) / 2 * 1px);
+      color: orange;
+      font-size: calc(var(--arrow-size) * 1px);
+
+      &.prev {
+        left: -10px;
+        z-index: 10;
+      }
+
+      &.next {
+        right: -10px;
+        z-index: 10;
+      }
+    }
+  }
+
+  .responsive-movies-grid {
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+
+    gap: 2rem;
+    justify-content: space-evenly;
+  }
+
+  .movie-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
   }
 }

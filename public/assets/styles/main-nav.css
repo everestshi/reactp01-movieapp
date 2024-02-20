@@ -5,7 +5,7 @@
   width: 100%;
   padding-block: 25px;
   transition: all 0.25s;
-  z-index: 4;
+  z-index: 100;
 }
 
 .main-nav img {
