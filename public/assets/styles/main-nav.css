@@ -83,9 +83,9 @@
   text-align: center;
 }
 
-.navbar-list .watch-later-link {
+/* .navbar-list .watch-later-link {
   padding-right: 0;
-}
+} */
 
 .navbar-link:is(:hover, :focus) { color:#007fff}
 
