@@ -20,6 +20,8 @@ import TopMoviesCarousel from "../components/TopMoviesCarousel";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 function PageHome() {
   const [movies, setMovies] = useState([]);
@@ -33,15 +35,6 @@ function PageHome() {
   const categories = ["popular", "topRated", "nowPlaying", "upcoming"];
   const [remainingCategories, setRemainingCategories] = useState([]);
   const [sliders, setSliders] = useState({});
-
-  const handleSearch = async () => {
-    try {
-      const searchResults = await searchMovies(searchQuery);
-      setMovies(searchResults); // Update the movies state with search results
-    } catch (error) {
-      console.error("Error performing search:", error);
-    }
-  };
 
   //const [selectedYear, setSelectedYear] = useState("2022");
 
@@ -98,7 +91,6 @@ function PageHome() {
       (category) => category !== selectedCategory
     );
     setRemainingCategories(remaining);
-    console.log(remaining);
   }, [selectedCategory]);
 
   useEffect(() => {
@@ -168,23 +160,26 @@ function PageHome() {
     </div>
   );
 
-  const searchSection = (
-    <div className="search-container">
-      <div className="search-bar">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search movie titles"
-        />
-        <FontAwesomeIcon
-          icon={faMagnifyingGlass}
-          className="search-icon"
-          onClick={handleSearch}
-        />
-      </div>
-    </div>
-  );
+  function PrevArrow(props) {
+    const { onClick } = props;
+    return (
+      <FontAwesomeIcon
+        icon={faAngleLeft}
+        onClick={onClick}
+        className="slider-arrow prev"
+      />
+    );
+  }
+  function NextArrow(props) {
+    const { onClick } = props;
+    return (
+      <FontAwesomeIcon
+        icon={faAngleRight}
+        onClick={onClick}
+        className="slider-arrow next"
+      />
+    );
+  }
 
   const settings = {
     dots: false,
@@ -193,19 +188,21 @@ function PageHome() {
     slidesToShow: 6,
     slidesToScroll: 6,
     initialSlide: 0,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
     responsive: [
       {
         breakpoint: 2000,
         settings: {
-          slidesToShow: 7,
-          slidesToScroll: 7,
+          slidesToShow: 6,
+          slidesToScroll: 1,
         },
       },
       {
         breakpoint: 1440,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 5,
+          slidesToScroll: 1,
         },
       },
       {
@@ -254,7 +251,9 @@ function PageHome() {
           <TopMoviesCarousel movies={movies} />
         </div>
         <div className="search-dropdown-container">
-          {/* {searchSection} */}
+          <h2 className="homepage-category-name">
+            {formatCategoryName(selectedCategory)}
+          </h2>
           {categoryDropDownMenu}
         </div>
         {movieList}
@@ -268,7 +267,9 @@ function PageHome() {
       <section className="homepage-sliders">
         {Object.keys(sliders).map((category) => (
           <div key={category}>
-            <h2>{formatCategoryName(category)}</h2>
+            <h2 className="homepage-category-name">
+              {formatCategoryName(category)}
+            </h2>
             <Slider {...settings}>
               {sliders[category].map((movie) => (
                 <div key={movie.id} className="movie-card">

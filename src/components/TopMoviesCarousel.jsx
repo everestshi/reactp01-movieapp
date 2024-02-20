@@ -80,6 +80,12 @@ function TopMoviesCarousel({ movies }) {
     setShowModal(true);
   };
 
+  const truncateOverview = (overview, maxLength) => {
+    return overview.length > maxLength
+      ? overview.substring(0, maxLength) + "..."
+      : overview;
+  };
+
   const genreNames = (movieDetailObj) => {
     if (!genres || genres.length === 0) return "";
     const movieGenres = movieDetailObj.genre_ids.map((genreId) =>
@@ -130,8 +136,10 @@ function TopMoviesCarousel({ movies }) {
             <div className="movie-overlay">
               <div className="movie-info">
                 <h2>{movieObj.title}</h2>
-                <p className="carousel-movie-overview">{movieObj.overview}</p>
                 <p className="carousel-movie-genres">{genreNames(movieObj)}</p>
+                <p className="carousel-movie-overview">
+                  {truncateOverview(movieObj.overview, 200)}
+                </p>
                 <div className="buttons">
                   <button
                     className="watch-trailer-btn-carousel"
