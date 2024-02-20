@@ -682,6 +682,17 @@ select {
   }
 }
 
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, var(--movie-poster-width));
+  gap: 20px;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  img {
+    width: var(--movie-poster-width);
+  }
+}
+
 .responsive-movies-grid {
   padding: 0 1rem;
   display: grid;
