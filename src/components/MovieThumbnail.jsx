@@ -93,7 +93,7 @@ function MovieThumbnail({ movieObj, allowRedirect = true }) {
           >
             <div className="overlay-top">
               <h3>{movieObj.title}</h3>
-              <p>Rating: {movieObj.vote_average}</p>
+              <p>Rating: {(movieObj.vote_average.toFixed(1))}/10</p>
               <div className="thumbnail-overview-container">
               <p className="overview">
                 {truncateOverview(movieObj.overview, 150)}
