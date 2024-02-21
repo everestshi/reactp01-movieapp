@@ -19,7 +19,7 @@ function MovieDetail({ movieDetailObj }) {
         {movieImage}
         <div className="movie-description">
           <p>{movieDetailObj.title}</p>
-          <p>{movieDetailObj.vote_average}</p>
+          <p>Rating: {(movieDetailObj.vote_average.toFixed(1))}/10</p>
           <p>{movieDetailObj.release_date}</p>
           <p>{genreNames}</p>
           <p>{movieDetailObj.overview}</p>
