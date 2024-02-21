@@ -34,7 +34,10 @@ export const fetchPopularMovies = async (page = 1) => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.results;
+
+    //return movies that contains a poster so that we can display it as a card if needed
+    const movies = data.results.filter((movie) => movie.poster_path);
+    return movies;
   } catch (error) {
     console.error('Error fetching popular movies:', error);
     return [];
@@ -50,7 +53,10 @@ export const fetchTopRatedMovies = async () => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.results;
+
+    //return movies that contains a poster so that we can display it as a card if needed
+    const movies = data.results.filter((movie) => movie.poster_path);
+    return movies;
   } catch (error) {
     console.error('Error fetching top-rated movies:', error);
     return [];
@@ -66,7 +72,9 @@ export const fetchNowPlayingMovies = async () => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.results;
+    //return movies that contains a poster so that we can display it as a card if needed
+    const movies = data.results.filter((movie) => movie.poster_path);
+    return movies;
   } catch (error) {
     console.error('Error fetching now playing movies:', error);
     return [];
@@ -82,7 +90,9 @@ export const fetchUpcomingMovies = async () => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.results;
+    //return movies that contains a poster so that we can display it as a card if needed
+    const movies = data.results.filter((movie) => movie.poster_path);
+    return movies;
   } catch (error) {
     console.error('Error fetching upcoming movies:', error);
     return [];
@@ -101,7 +111,10 @@ export const searchMovies = async (query) => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.results;
+
+    //return movies that contains a poster so that we can display it as a card if needed
+    const movies = data.results.filter((movie) => movie.poster_path);
+    return movies;
   } catch (error) {
     console.error('Error searching movies by title:', error);
     return [];
@@ -184,7 +197,9 @@ export const fetchRecommendedMovies = async (id) => {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    return data.results;
+    //return movies that contains a poster so that we can display it as a card if needed
+    const movies = data.results.filter((movie) => movie.poster_path);
+    return movies;
   } catch (error) {
     console.error('Error fetching recommended movie:', error);
     return null;
