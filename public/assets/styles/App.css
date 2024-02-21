@@ -20,7 +20,7 @@ html {
 
 /* General Stylings */
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: var(--text-theme-color);
   background-color: var(--bg-theme-color);
   min-width: 400px;
@@ -55,7 +55,7 @@ a {
 h2,
 h3,
 h4 {
-  font-family: "Alatsi", sans-serif;
+  font-family: 'Alatsi', sans-serif;
 }
 
 h1,
@@ -295,7 +295,7 @@ select {
   align-items: center;
 }
 .border-container::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   padding: var(--b);
@@ -550,7 +550,7 @@ select {
 
 /* Background image layer */
 .thumbnail-overlay::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -679,6 +679,17 @@ select {
       right: -10px;
       z-index: 10;
     }
+  }
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, var(--movie-poster-width));
+  gap: 20px;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  img {
+    width: var(--movie-poster-width);
   }
 }
 
@@ -901,7 +912,7 @@ p {
   margin-bottom: 20px;
 }
 
-.recommended-carousel {
+.thumbnail-carousel {
   --img-height: 300;
   --arrow-size: 40;
 
@@ -994,7 +1005,6 @@ p {
   .carousel-movie-overview {
     display: flex;
   }
-
 
   .movie-info {
     z-index: 1;
@@ -1132,7 +1142,7 @@ p {
 
   /* Background image layer */
   .thumbnail-overlay::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -1476,7 +1486,7 @@ p {
 
   /* Background image layer */
   .thumbnail-overlay::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
