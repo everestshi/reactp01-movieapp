@@ -32,23 +32,16 @@ export default function ThumbnailCarousel({ movieObjList }) {
     infinite: true,
     adaptiveHeight: false,
     speed: 500,
-    slidesToShow: 8,
-    slidesToScroll: 8,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     responsive: [
       {
-        breakpoint: 2000,
-        settings: {
-          slidesToShow: 7,
-          slidesToScroll: 7
-        }
-      },
-      {
-        breakpoint: 1600,
+        breakpoint: 1700,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 5
+          slidesToScroll: 1
         }
       },
       {
