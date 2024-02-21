@@ -59,7 +59,7 @@ const Nav = () => {
       <div className="nav-container">
         <div className="icons">
           {/* <div className="overlay" onClick={toggleNav}></div> */}
-          <NavLink to="/" onClick={toggleNav}>
+          <NavLink to="/">
             <img src="../../assets/images/MovieLogo.png" alt="Movie Logo" />
           </NavLink>
           {searchSection}
@@ -76,9 +76,9 @@ const Nav = () => {
               </button>
             </div>
             <ul className="navbar-list">
-              {/* <li>
+              <li>
               <NavLink className="navbar-link" to="/" onClick={toggleNav}>Home</NavLink>
-            </li> */}
+            </li>
               <li>
                 <NavLink
                   className="navbar-link"
@@ -99,7 +99,7 @@ const Nav = () => {
                   to="/watchlist"
                   onClick={toggleNav}
                 >
-                  Watch Later
+                  Watchlist
                 </NavLink>
               </li>
             </ul>
