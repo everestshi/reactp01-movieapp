@@ -20,7 +20,7 @@ html {
 
 /* General Stylings */
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: var(--text-theme-color);
   background-color: var(--bg-theme-color);
   min-width: 400px;
@@ -55,7 +55,7 @@ a {
 h2,
 h3,
 h4 {
-  font-family: "Alatsi", sans-serif;
+  font-family: 'Alatsi', sans-serif;
 }
 
 h1,
@@ -295,7 +295,7 @@ select {
   align-items: center;
 }
 .border-container::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   padding: var(--b);
@@ -550,7 +550,7 @@ select {
 
 /* Background image layer */
 .thumbnail-overlay::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -912,7 +912,7 @@ p {
   margin-bottom: 20px;
 }
 
-.recommended-carousel {
+.thumbnail-carousel {
   --img-height: 300;
   --arrow-size: 40;
 
@@ -1005,7 +1005,6 @@ p {
   .carousel-movie-overview {
     display: flex;
   }
-
 
   .movie-info {
     z-index: 1;
@@ -1143,7 +1142,7 @@ p {
 
   /* Background image layer */
   .thumbnail-overlay::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -1487,7 +1486,7 @@ p {
 
   /* Background image layer */
   .thumbnail-overlay::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -1635,69 +1634,67 @@ p {
   }
 }
 
-  .about-container {
-    display: flex;
-    gap: 2rem;
-    padding: 30px;
-    background: linear-gradient(180deg, #1a1a1a 0%, rgb(37, 47, 53) 100%);
-    flex-direction: row;
+.about-container {
+  display: flex;
+  gap: 2rem;
+  padding: 30px;
+  background: linear-gradient(180deg, #1a1a1a 0%, rgb(37, 47, 53) 100%);
+  flex-direction: row;
+}
+.about-container-section {
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #252525;
+  opacity: 0; /* Initially hide the sections */
+}
+
+/* Left side animation */
+.about-container-section.left {
+  animation: slideInLeft 0.7s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%); /* Start position for left slide */
   }
-  .about-container-section {
-    padding: 20px;
-    border-radius: 25px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #252525;
-    opacity: 0; /* Initially hide the sections */
+  70% {
+    transform: translateX(5%); /* Bounce effect */
   }
-  
-  /* Left side animation */
-  .about-container-section.left {
-    animation: slideInLeft 0.7s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* End position (slide in from left) */
   }
-  
-  @keyframes slideInLeft {
-    0% {
-      opacity: 0;
-      transform: translateX(-100%); /* Start position for left slide */
-    }
-    70% {
-      transform: translateX(5%); /* Bounce effect */
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0); /* End position (slide in from left) */
-    }
+}
+
+/* Right side animation */
+.about-container-section.right {
+  animation: slideInRight 0.7s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%); /* Start position for right slide */
   }
-  
-  /* Right side animation */
-  .about-container-section.right {
-    animation: slideInRight 0.7s forwards cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  70% {
+    transform: translateX(-5%); /* Bounce effect */
   }
-  
-  @keyframes slideInRight {
-    0% {
-      opacity: 0;
-      transform: translateX(100%); /* Start position for right slide */
-    }
-    70% {
-      transform: translateX(-5%); /* Bounce effect */
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0); /* End position (slide in from right) */
-    }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* End position (slide in from right) */
   }
-  
-  .about-container-section:nth-child(odd) {
-    animation-delay: 0.3s; /* Delay animation for odd sections */
-  }
-  
-  .about-container-section:nth-child(even) {
-    animation-delay: 0.3s; /* Delay animation for even sections */
-  }
-  
-  .about-container-section:hover {
-    transform: translateY(-5px);
-  }
-  
+}
+
+.about-container-section:nth-child(odd) {
+  animation-delay: 0.3s; /* Delay animation for odd sections */
+}
+
+.about-container-section:nth-child(even) {
+  animation-delay: 0.3s; /* Delay animation for even sections */
+}
+
+.about-container-section:hover {
+  transform: translateY(-5px);
 }

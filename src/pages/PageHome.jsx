@@ -22,6 +22,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import ThumbnailCarousel from '../components/ThumbnailCarousel';
 
 function PageHome() {
   const [movies, setMovies] = useState([]);
@@ -160,82 +161,6 @@ function PageHome() {
     </div>
   );
 
-  function PrevArrow(props) {
-    const { onClick } = props;
-    return (
-      <FontAwesomeIcon
-        icon={faAngleLeft}
-        onClick={onClick}
-        className="slider-arrow prev"
-      />
-    );
-  }
-  function NextArrow(props) {
-    const { onClick } = props;
-    return (
-      <FontAwesomeIcon
-        icon={faAngleRight}
-        onClick={onClick}
-        className="slider-arrow next"
-      />
-    );
-  }
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 6,
-    initialSlide: 0,
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
-    responsive: [
-      {
-        breakpoint: 2000,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 1
-        }
-      },
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1
-        }
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1
-        }
-      },
-      {
-        breakpoint: 850,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1
-        }
-      },
-      {
-        breakpoint: 650,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1
-        }
-      },
-      {
-        breakpoint: 425,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
-
   // Function to format category names with separate words and capitalize first letter of every word
   const formatCategoryName = (category) => {
     return category
@@ -243,6 +168,19 @@ function PageHome() {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
   };
+
+  const movieSliders = (
+    <>
+      {Object.keys(sliders).map((category) => (
+        <div key={category}>
+          <h2 className="homepage-category-name">
+            {formatCategoryName(category)}
+          </h2>
+          <ThumbnailCarousel movieObjList={sliders[category]} />
+        </div>
+      ))}
+    </>
+  );
 
   return (
     <main>
@@ -264,22 +202,7 @@ function PageHome() {
           setShowModal={setShowModal}
         />
       </section>
-      <section className="homepage-sliders">
-        {Object.keys(sliders).map((category) => (
-          <div key={category}>
-            <h2 className="homepage-category-name">
-              {formatCategoryName(category)}
-            </h2>
-            <Slider {...settings}>
-              {sliders[category].map((movie) => (
-                <div key={movie.id} className="movie-card">
-                  <MovieThumbnail movieObj={movie} />
-                </div>
-              ))}
-            </Slider>
-          </div>
-        ))}
-      </section>
+      <section className="homepage-sliders">{movieSliders}</section>
     </main>
   );
 }
