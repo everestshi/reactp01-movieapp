@@ -1,23 +1,11 @@
 import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-import { fetchRecommendedMovies } from '../data/tmdb-data';
 import MovieThumbnail from './MovieThumbnail';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
-export default function RecommendedCarousel({ movieId }) {
-  const [recommendedMovies, setRecommendedMovies] = useState(null);
-
-  useEffect(() => {
-    const getRecommendedMovies = async () => {
-      const movies = await fetchRecommendedMovies(movieId);
-      setRecommendedMovies(movies);
-    };
-
-    getRecommendedMovies();
-  }, []);
-
+export default function ThumbnailCarousel({ movieObjList }) {
   function PrevArrow(props) {
     const { onClick } = props;
     return (
@@ -94,13 +82,11 @@ export default function RecommendedCarousel({ movieId }) {
     ]
   };
 
-  return (
-    <Slider {...settings} className="recommended-carousel">
-      {!recommendedMovies
-        ? null
-        : recommendedMovies.map((movie) => {
-            return <MovieThumbnail key={movie.id} movieObj={movie} />;
-          })}
+  return !movieObjList || !movieObjList.length > 0 ? null : (
+    <Slider {...settings} className="thumbnail-carousel">
+      {movieObjList.map((movie) => {
+        return <MovieThumbnail key={movie.id} movieObj={movie} />;
+      })}
     </Slider>
   );
 }
