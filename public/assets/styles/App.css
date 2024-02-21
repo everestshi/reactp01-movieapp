@@ -4,8 +4,8 @@
   --text-theme-color: white;
   --movie-poster-width: 250px;
   --gradient-mask: linear-gradient(rgba(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
-  /* in px */
   --accent-color: #007fff;
+  --max-main-width: 1300px;
 }
 
 /* Resets */
@@ -33,7 +33,7 @@ body {
 
 main {
   flex-grow: 1;
-  max-width: 1300px;
+  max-width: var(--max-main-width);
   width: 100%;
   margin: 0 auto;
 }
@@ -755,7 +755,7 @@ select {
 /* Detail Page Styling */
 .banner-section {
   box-sizing: border-box;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   aspect-ratio: 16/9;
 }
@@ -775,6 +775,8 @@ select {
     width: 100%;
     transform: translateX(calc(var(--side-padding-main) * -1px));
     aspect-ratio: 16 / 9;
+    position: absolute;
+    z-index: -10;
     --webkit-mask-image: var(--gradient-mask);
     --moz-mask-image: var(--gradient-mask);
     --ms-mask-image: var(--gradient-mask);
@@ -835,11 +837,21 @@ h2 {
 
   .movie-description {
     max-width: 500px;
+    p {
+      color: var(--text-theme-color);
+    }
   }
 
   img {
     max-width: var(--movie-poster-width) !important;
     margin: 0 !important;
+  }
+}
+
+/* hard coded --max-main-width here because media query does not accept custom properties */
+@media (min-width: 1300px) {
+  .banner-section {
+    transform: translateX(calc((var(--max-main-width) - 100vw) / 2));
   }
 }
 
