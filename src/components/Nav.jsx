@@ -43,10 +43,19 @@ const Nav = () => {
       }
     };
 
+    const handleResize = () => {
+      if (window.innerWidth <= 786) {
+        setIsSideBarActive(false); // Remove active class if window width is less than or equal to 786px
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize); // Remove resize event listener on component unmount
+
     };
   }, []);
 
