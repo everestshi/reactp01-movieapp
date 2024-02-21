@@ -411,12 +411,17 @@ select {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 10px);
   background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
+      to bottom,
+      rgba(0, 0, 0, 0) 50%, /* Clear from the middle */
+      rgba(0, 0, 0, 1) 100% /* Fades to black at the bottom */
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.9) 0%, /* Starts black at the top */
+      rgba(0, 0, 0, 0) 20% /* Fades to clear at 10% down */
+    );
   color: white;
   padding: 20px;
   box-sizing: border-box;
