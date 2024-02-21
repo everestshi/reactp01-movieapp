@@ -1650,7 +1650,7 @@ p {
       transform: translateX(-100%); /* Start position for left slide */
     }
     70% {
-      transform: translateX(5%); /* Bounce effect */
+      transform: translateX(0%); /* Bounce effect */
     }
     100% {
       opacity: 1;
@@ -1669,7 +1669,7 @@ p {
       transform: translateX(100%); /* Start position for right slide */
     }
     70% {
-      transform: translateX(-5%); /* Bounce effect */
+      transform: translateX(0%); /* Bounce effect */
     }
     100% {
       opacity: 1;
