@@ -386,6 +386,13 @@ select {
 
 /* Movie Carousel */
 
+.top-movies-carousel {
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  top: 0;
+}
+
 .movie-slide {
   position: relative;
   width: 100vw;
@@ -475,6 +482,7 @@ select {
   display: flex;
   justify-content: space-between;
   margin: 20px;
+  padding-top: calc(100vw*1.5 - 75px);
 }
 
 .search-dropdown-container select {
@@ -1079,6 +1087,8 @@ p {
     display: flex;
     justify-content: space-between;
     margin: 20px;
+    padding-top: calc(100vw/16*9 - 75px);
+
   }
 
   .search-dropdown-container select {
@@ -1352,7 +1362,6 @@ p {
   /* Movie Carousel */
 
   .top-movies-carousel {
-    position: relative;
     width: calc(100vw - 20px); /* Set the width to 100% of the viewport width */
     left: 50%; /* Move the element to the center */
     transform: translateX(-50%); /* Adjust to center the element horizontally */
@@ -1423,6 +1432,8 @@ p {
     display: flex;
     justify-content: space-between;
     margin: 20px;
+    padding-top: calc(100vw/16*9 - 75px);
+
   }
 
   .search-dropdown-container select {
