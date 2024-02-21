@@ -775,6 +775,8 @@ select {
     width: 100%;
     transform: translateX(calc(var(--side-padding-main) * -1px));
     aspect-ratio: 16 / 9;
+    position: absolute;
+    z-index: -10;
     --webkit-mask-image: var(--gradient-mask);
     --moz-mask-image: var(--gradient-mask);
     --ms-mask-image: var(--gradient-mask);
@@ -835,6 +837,9 @@ h2 {
 
   .movie-description {
     max-width: 500px;
+    p {
+      color: var(--text-theme-color);
+    }
   }
 
   img {
