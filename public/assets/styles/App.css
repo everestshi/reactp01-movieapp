@@ -4,8 +4,8 @@
   --text-theme-color: white;
   --movie-poster-width: 250px;
   --gradient-mask: linear-gradient(rgba(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
-  /* in px */
   --accent-color: #007fff;
+  --max-main-width: 1300px;
 }
 
 /* Resets */
@@ -33,7 +33,7 @@ body {
 
 main {
   flex-grow: 1;
-  max-width: 1300px;
+  max-width: var(--max-main-width);
   width: 100%;
   margin: 0 auto;
 }
@@ -386,6 +386,13 @@ select {
 
 /* Movie Carousel */
 
+.top-movies-carousel {
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  top: 0;
+}
+
 .movie-slide {
   position: relative;
   width: 100vw;
@@ -475,6 +482,7 @@ select {
   display: flex;
   justify-content: space-between;
   margin: 20px;
+  padding-top: calc(100vw*1.5 - 75px);
 }
 
 .search-dropdown-container select {
@@ -755,7 +763,7 @@ select {
 /* Detail Page Styling */
 .banner-section {
   box-sizing: border-box;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   aspect-ratio: 16/9;
 }
@@ -775,6 +783,8 @@ select {
     width: 100%;
     transform: translateX(calc(var(--side-padding-main) * -1px));
     aspect-ratio: 16 / 9;
+    position: absolute;
+    z-index: -10;
     --webkit-mask-image: var(--gradient-mask);
     --moz-mask-image: var(--gradient-mask);
     --ms-mask-image: var(--gradient-mask);
@@ -835,11 +845,21 @@ h2 {
 
   .movie-description {
     max-width: 500px;
+    p {
+      color: var(--text-theme-color);
+    }
   }
 
   img {
     max-width: var(--movie-poster-width) !important;
     margin: 0 !important;
+  }
+}
+
+/* hard coded --max-main-width here because media query does not accept custom properties */
+@media (min-width: 1300px) {
+  .banner-section {
+    transform: translateX(calc((var(--max-main-width) - 100vw) / 2));
   }
 }
 
@@ -1067,6 +1087,8 @@ p {
     display: flex;
     justify-content: space-between;
     margin: 20px;
+    padding-top: calc(100vw/16*9 - 75px);
+
   }
 
   .search-dropdown-container select {
@@ -1340,7 +1362,6 @@ p {
   /* Movie Carousel */
 
   .top-movies-carousel {
-    position: relative;
     width: calc(100vw - 20px); /* Set the width to 100% of the viewport width */
     left: 50%; /* Move the element to the center */
     transform: translateX(-50%); /* Adjust to center the element horizontally */
@@ -1411,6 +1432,8 @@ p {
     display: flex;
     justify-content: space-between;
     margin: 20px;
+    padding-top: calc(100vw/16*9 - 75px);
+
   }
 
   .search-dropdown-container select {
