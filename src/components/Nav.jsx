@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -7,18 +7,24 @@ import "../../public/assets/styles/main-nav.css";
 
 const Nav = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [isSideBarActive, setIsSideBarActive] = useState(false);
   const [isNavActive, setIsNavActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
 
   const search = () => {
-    navigate(`../search?query=${encodeURIComponent(searchQuery)}`, {
-      replace: true,
-    });
-    navigate(0);
+    navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
   };
 
+  const handleSearchInput = (e) => {
+    const queryString = e.target.value;
+    setSearchQuery(queryString);
+    if (queryString && location.pathname == "/search") {
+      search();
+    }
+  };
   const checkEnterKeyPress = () => {
     if (event.key === "Enter") {
       search();
@@ -31,7 +37,7 @@ const Nav = () => {
         <input
           type="text"
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => handleSearchInput(e)}
           onKeyDown={checkEnterKeyPress}
           placeholder="Search movie titles"
         />
