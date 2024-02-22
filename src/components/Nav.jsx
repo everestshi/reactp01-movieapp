@@ -1,15 +1,35 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "../../public/assets/styles/main-nav.css";
 
 const Nav = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [isSideBarActive, setIsSideBarActive] = useState(false);
   const [isNavActive, setIsNavActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
+
+  const search = () => {
+    navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
+  };
+
+  const handleSearchInput = (e) => {
+    const queryString = e.target.value;
+    setSearchQuery(queryString);
+    if (queryString && location.pathname == "/search") {
+      search();
+    }
+  };
+  const checkEnterKeyPress = () => {
+    if (event.key === "Enter") {
+      search();
+    }
+  };
 
   const searchSection = (
     <div className="search-container">
@@ -17,15 +37,16 @@ const Nav = () => {
         <input
           type="text"
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => handleSearchInput(e)}
+          onKeyDown={checkEnterKeyPress}
           placeholder="Search movie titles"
         />
-        <NavLink to={`/search?query=${encodeURIComponent(searchQuery)}`}>
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className="search-icon"
-          />
-        </NavLink>
+
+        <FontAwesomeIcon
+          icon={faMagnifyingGlass}
+          className="search-icon"
+          onClick={search}
+        />
       </div>
     </div>
   );
@@ -61,6 +82,7 @@ const Nav = () => {
 
   function toggleNav() {
     setIsSideBarActive(!isSideBarActive);
+    setSearchQuery(null);
   }
 
   return (
@@ -86,8 +108,10 @@ const Nav = () => {
             </div>
             <ul className="navbar-list">
               <li>
-              <NavLink className="navbar-link" to="/" onClick={toggleNav}>Home</NavLink>
-            </li>
+                <NavLink className="navbar-link" to="/" onClick={toggleNav}>
+                  Home
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   className="navbar-link"
