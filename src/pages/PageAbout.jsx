@@ -35,8 +35,7 @@ function PageAbout() {
         <div className="about-container-section right">
           <h4 className="about-title">Meet the team</h4>
           <p>
-            MVDB is a React JS project developed and created by Alex, Everest,
-            and Amanda. We are an enthusiastic web development team that strives
+            MVDB is a React JS project developed and created by Alex, Amanda, and Everest. We are an enthusiastic web development team that strives
             to go above and beyond what is expected from us!
           </p>
         </div>
