@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay as outlinePlay } from "@fortawesome/free-regular-svg-icons";
 import { fetchTrailerUrl, fetchMovieGenres } from "../data/tmdb-data"; // Import the fetchTrailerUrl function
-import { movieImgBasePath } from "../globals/globalVariables";
 import TrailerModal from "../components/TrailerModal"; // Import the TrailerModal component
 import FavButton from "../components/FavButton"; // Import the FavButton component
 import WatchlistButton from "../components/WatchlistButton"; // Import the WatchlistButton component
