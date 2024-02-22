@@ -1,17 +1,17 @@
 // App Router
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from '../components/Header';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import PageHome from '../pages/PageHome';
-import PageMovieDetails from '../pages/PageMovieDetails';
-import PageAbout from '../pages/PageAbout';
-import PageFavs from '../pages/PageFavs';
-import PageWatchlist from '../pages/PageWatchlist';
-import PageNotFound from '../pages/PageNotFound';
-import PageSearch from '../pages/PageSearch';
-import { appTitle, appAuthor } from '../globals/globalVariables';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "../components/Header";
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
+import PageHome from "../pages/PageHome";
+import PageMovieDetails from "../pages/PageMovieDetails";
+import PageAbout from "../pages/PageAbout";
+import PageFavs from "../pages/PageFavs";
+import PageWatchlist from "../pages/PageWatchlist";
+import PageNotFound from "../pages/PageNotFound";
+import PageSearch from "../pages/PageSearch";
+import { appTitle, appAuthor } from "../globals/globalVariables";
 
 function AppRouter() {
   return (
