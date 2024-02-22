@@ -1,15 +1,29 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "../../public/assets/styles/main-nav.css";
 
 const Nav = () => {
+  const navigate = useNavigate();
   const [isSideBarActive, setIsSideBarActive] = useState(false);
   const [isNavActive, setIsNavActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
+
+  const search = () => {
+    navigate(`../search?query=${encodeURIComponent(searchQuery)}`, {
+      replace: true,
+    });
+    navigate(0);
+  };
+
+  const checkEnterKeyPress = () => {
+    if (event.key === "Enter") {
+      search();
+    }
+  };
 
   const searchSection = (
     <div className="search-container">
@@ -18,14 +32,15 @@ const Nav = () => {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyDown={checkEnterKeyPress}
           placeholder="Search movie titles"
         />
-        <NavLink to={`/search?query=${encodeURIComponent(searchQuery)}`}>
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className="search-icon"
-          />
-        </NavLink>
+
+        <FontAwesomeIcon
+          icon={faMagnifyingGlass}
+          className="search-icon"
+          onClick={search}
+        />
       </div>
     </div>
   );
@@ -52,6 +67,7 @@ const Nav = () => {
 
   function toggleNav() {
     setIsSideBarActive(!isSideBarActive);
+    setSearchQuery(null);
   }
 
   return (
@@ -77,8 +93,10 @@ const Nav = () => {
             </div>
             <ul className="navbar-list">
               <li>
-              <NavLink className="navbar-link" to="/" onClick={toggleNav}>Home</NavLink>
-            </li>
+                <NavLink className="navbar-link" to="/" onClick={toggleNav}>
+                  Home
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   className="navbar-link"
