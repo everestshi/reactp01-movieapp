@@ -12,6 +12,12 @@ const SearchPage = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
+    if (query != searchQuery) {
+      setSearchQuery(query);
+    }
+  });
+
+  useEffect(() => {
     // Define a function to fetch search results
     const fetchSearchResults = async () => {
       try {
@@ -24,7 +30,7 @@ const SearchPage = () => {
 
     // Call fetchSearchResults whenever searchQuery changes
     fetchSearchResults();
-  }, [query]); // Execute the effect whenever searchQuery changes
+  }, [searchQuery]); // Execute the effect whenever searchQuery changes
 
   return (
     <main>
