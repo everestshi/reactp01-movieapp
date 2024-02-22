@@ -505,8 +505,6 @@ select {
   align-self: center; /* Center vertically */
 }
 
-.search-dropdown-container select:focus {
-}
 
 /* Add this CSS to your existing styles.css file or create a new CSS file */
 
@@ -1110,9 +1108,6 @@ p {
     align-self: center; /* Center vertically */
   }
 
-  .search-dropdown-container select:focus {
-  }
-
   /* Add this CSS to your existing styles.css file or create a new CSS file */
 
   .movie-thumbnail {
@@ -1375,18 +1370,6 @@ p {
     display: flex;
   }
 
-  .movie-info {
-    z-index: 1;
-    margin: 0;
-    margin-left: 1rem;
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: flex-start;
-    padding-bottom: 20px;
-  }
-
   .movie-info h2 {
     text-align: left;
     font-size: 2.3rem;
@@ -1452,9 +1435,6 @@ p {
     text-align: center;
     cursor: pointer;
     align-self: center; /* Center vertically */
-  }
-
-  .search-dropdown-container select:focus {
   }
 
   /* Add this CSS to your existing styles.css file or create a new CSS file */
@@ -1659,6 +1639,22 @@ p {
     margin-bottom: 1rem;
   }
 }
+
+@media (min-width: 1440px) {
+  .movie-info {
+    z-index: 1;
+    margin: 0;
+    margin-left: 5%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    padding-bottom: 20px;
+  }
+}
+
+
 
 .about-container {
   display: flex;
