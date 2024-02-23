@@ -87,7 +87,6 @@ function MovieThumbnail({ movieObj, allowRedirect = true }) {
           }}
         >
           <Link
-            reloadDocument
             to={`/movie-details/${movieObj.id}`}
             className="overlay-content"
           >
