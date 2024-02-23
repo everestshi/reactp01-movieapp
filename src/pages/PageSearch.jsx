@@ -40,7 +40,7 @@ const SearchPage = () => {
           <div className="border-container">
             <img
               className="popcorn-img"
-              src="../../public/assets/images/CuteDetective.png"
+              src="/assets/images/CuteDetective.png"
               alt="Cute Detective"
             />
             <div className="empty-description">

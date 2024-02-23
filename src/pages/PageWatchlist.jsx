@@ -20,7 +20,7 @@ function PageWatchlist() {
           <div className="border-container">
             <img
               className="popcorn-img"
-              src="../../public/assets/images/CuteCat.png"
+              src="/assets/images/CuteCat.png"
               alt="Cute Popcorn"
             />
             <div className="empty-description">
