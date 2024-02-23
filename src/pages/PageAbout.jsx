@@ -26,7 +26,7 @@ function PageAbout() {
             TMDb.
           </p>
           <img
-            src="../../public/assets/images/API_logo.png"
+            src="/assets/images/API_logo.png"
             alt="API Logo"
             className="db-logo"
           />
