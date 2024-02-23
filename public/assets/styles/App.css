@@ -5,7 +5,8 @@
   --movie-poster-width: 250px;
   --gradient-mask: linear-gradient(rgba(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
   --accent-color: #007fff;
-  --max-main-width: 1300px;
+  /* in pixels */
+  --max-main-width: 1300;
 }
 
 /* Resets */
@@ -20,7 +21,7 @@ html {
 
 /* General Stylings */
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: var(--text-theme-color);
   background-color: var(--bg-theme-color);
   min-width: 400px;
@@ -55,7 +56,7 @@ a {
 h2,
 h3,
 h4 {
-  font-family: "Alatsi", sans-serif;
+  font-family: 'Alatsi', sans-serif;
 }
 
 h1,
@@ -295,7 +296,7 @@ select {
   align-items: center;
 }
 .border-container::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   padding: var(--b);
@@ -561,7 +562,7 @@ select {
 
 /* Background image layer */
 .thumbnail-overlay::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -774,7 +775,7 @@ select {
 /* Detail Page Styling */
 .banner-section {
   box-sizing: border-box;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   aspect-ratio: 16/9;
 }
@@ -874,7 +875,8 @@ h2 {
 /* hard coded --max-main-width here because media query does not accept custom properties */
 @media (min-width: 1300px) {
   .banner-section {
-    transform: translateX(calc((var(--max-main-width) - 100vw) / 2));
+    width: 100%;
+    transform: translateX(calc((var(--max-main-width) - 100vw) / 2px));
   }
 }
 
@@ -1174,7 +1176,7 @@ p {
 
   /* Background image layer */
   .thumbnail-overlay::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -1514,7 +1516,7 @@ p {
 
   /* Background image layer */
   .thumbnail-overlay::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
