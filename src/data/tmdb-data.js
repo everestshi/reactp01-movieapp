@@ -1,4 +1,6 @@
-const API_KEY = 'be601e74c575148d8ea2224d8cded829';
+import { REACT_APP_API_KEY } from "../../env";
+
+const API_KEY = REACT_APP_API_KEY;
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_BASE_URL = 'https://image.tmdb.org/t/p';
 const LANGUAGE = 'en-US';
