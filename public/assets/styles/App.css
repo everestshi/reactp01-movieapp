@@ -613,8 +613,15 @@ select {
 }
 
 .overlay-content p {
-  font-size: 0.7rem;
-  margin: 1rem 0;
+  font-size: 0.6rem;
+}
+
+.thumbnail-rating {
+  margin: 0;
+}
+
+.thumbnail-release-date{
+  margin: 0.2rem 0 1rem 0;
 }
 
 .overlay-buttons {
@@ -834,6 +841,10 @@ select {
 
 #movie-detail-section {
   margin: auto 20px;
+}
+
+.movie-detail-title{
+  margin: 0 0 40px 0;
 }
 
 h2 {
@@ -1210,13 +1221,24 @@ p {
   }
 
   .overlay-content h3 {
-    font-size: 1rem;
+    font-size: 1.3rem;
     padding-bottom: 1rem;
   }
 
   .overlay-content p {
     font-size: 0.6rem;
-    margin: 1rem 0;
+  }
+
+  .overlay-content p {
+    font-size: 0.6rem;
+  }
+  
+  .thumbnail-rating {
+    margin: 0;
+  }
+  
+  .thumbnail-release-date{
+    margin: 0.2rem 0 1rem 0;
   }
 
   .overlay-buttons {
@@ -1544,8 +1566,15 @@ p {
   }
 
   .overlay-content p {
-    font-size: 0.7rem;
-    margin: 1rem 0;
+    font-size: 0.6rem;
+  }
+  
+  .thumbnail-rating {
+    margin: 0;
+  }
+  
+  .thumbnail-release-date{
+    margin: 0.2rem 0 1rem 0;
   }
 
   .overlay-buttons {

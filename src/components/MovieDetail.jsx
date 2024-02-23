@@ -18,9 +18,9 @@ function MovieDetail({ movieDetailObj }) {
       <div className="movie-detail-panel">
         {movieImage}
         <div className="movie-description">
-          <p>{movieDetailObj.title}</p>
+          <h3 className="movie-detail-title">{movieDetailObj.title}</h3>
           <p>Rating: {(movieDetailObj.vote_average.toFixed(1))}/10</p>
-          <p>{movieDetailObj.release_date}</p>
+          <p>Release Date: {movieDetailObj.release_date}</p>
           <p>{genreNames}</p>
           <p>{movieDetailObj.overview}</p>
         </div>
