@@ -53,15 +53,7 @@ const Nav = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const mainNav = document.querySelector(".main-nav");
       setIsNavActive(window.scrollY >= 10);
-      if (mainNav) {
-        if (window.scrollY >= 10) {
-          mainNav.classList.add("active");
-        } else {
-          mainNav.classList.remove("active");
-        }
-      }
     };
 
     const handleResize = () => {
