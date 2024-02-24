@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -12,20 +12,23 @@ const Nav = () => {
   const [isSideBarActive, setIsSideBarActive] = useState(false);
   const [isNavActive, setIsNavActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [movies, setMovies] = useState([]);
 
   const search = () => {
-    navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
-  };
-
-  const handleSearchInput = (e) => {
-    const queryString = e.target.value;
-    setSearchQuery(queryString);
-    if (queryString && location.pathname == "/search") {
-      search();
+    const query = searchQuery.trim();
+    if (query) {
+      navigate(`/search?query=${encodeURIComponent(query)}`);
+    } else {
+      navigate(`/search?query=`);
     }
   };
-  const checkEnterKeyPress = () => {
+
+  useEffect(() => {
+    if (searchQuery && location.pathname === "/search") {
+      search();
+    }
+  }, [searchQuery, location.pathname]);
+
+  const checkEnterKeyPress = (event) => {
     if (event.key === "Enter") {
       search();
     }
@@ -37,7 +40,7 @@ const Nav = () => {
         <input
           type="text"
           value={searchQuery}
-          onChange={(e) => handleSearchInput(e)}
+          onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={checkEnterKeyPress}
           placeholder="Search movie titles"
         />
@@ -68,20 +71,18 @@ const Nav = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize); // Remove resize event listener on component unmount
-
     };
   }, []);
 
   function toggleNav() {
     setIsSideBarActive(!isSideBarActive);
-    setSearchQuery(null);
+    setSearchQuery("");
   }
 
   return (
     <div className={`main-nav ${isNavActive ? "active" : ""}`}>
       <div className="nav-container">
         <div className="icons">
-          {/* <div className="overlay" onClick={toggleNav}></div> */}
           <NavLink to="/">
             <img src="../../assets/images/MovieLogo.png" alt="Movie Logo" />
           </NavLink>

@@ -44,7 +44,7 @@ const SearchPage = () => {
               alt="Cute Detective"
             />
             <div className="empty-description">
-              <p>Looks like you haven't added a search term yet!</p>
+              <p>Looks like no movies were found for the search term "{searchQuery}".</p>
               <p>Start typing in the search bar to begin your search.</p>
             </div>
           </div>
