@@ -83,7 +83,9 @@ export const fetchNowPlayingMovies = async () => {
 
 // Function to fetch upcoming movies
 export const fetchUpcomingMovies = async () => {
-  const API_URL = `${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=${LANGUAGE}`;
+  const API_URL = `${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=${LANGUAGE}&primary_release_date.gte=${
+    new Date().toISOString().split('T')[0]
+  }&region=US`;
   try {
     const response = await fetch(API_URL);
     if (!response.ok) {
