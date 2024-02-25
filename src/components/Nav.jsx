@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import "../../public/assets/styles/main-nav.css";
+import React, { useState, useEffect } from 'react';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import '../../public/assets/styles/main-nav.css';
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Nav = () => {
 
   const [isSideBarActive, setIsSideBarActive] = useState(false);
   const [isNavActive, setIsNavActive] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const search = () => {
     const query = searchQuery.trim();
@@ -23,13 +23,13 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    if (searchQuery && location.pathname === "/search") {
+    if (searchQuery && location.pathname === '/search') {
       search();
     }
   }, [searchQuery, location.pathname]);
 
   const checkEnterKeyPress = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       search();
     }
   };
@@ -40,7 +40,9 @@ const Nav = () => {
         <input
           type="text"
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+          }}
           onKeyDown={checkEnterKeyPress}
           placeholder="Search movie titles"
         />
@@ -65,22 +67,22 @@ const Nav = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize); // Remove resize event listener on component unmount
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize); // Remove resize event listener on component unmount
     };
   }, []);
 
   function toggleNav() {
     setIsSideBarActive(!isSideBarActive);
-    setSearchQuery("");
+    setSearchQuery('');
   }
 
   return (
-    <div className={`main-nav ${isNavActive ? "active" : ""}`}>
+    <div className={`main-nav ${isNavActive ? 'active' : ''}`}>
       <div className="nav-container">
         <div className="icons">
           <NavLink to="/">
@@ -92,7 +94,7 @@ const Nav = () => {
           <button className="menu-open-btn" onClick={toggleNav}>
             <FontAwesomeIcon icon={faBars} />
           </button>
-          <nav className={`navbar ${isSideBarActive ? "active" : ""}`}>
+          <nav className={`navbar ${isSideBarActive ? 'active' : ''}`}>
             <div className="navbar-top">
               <img src="../../assets/images/MovieLogo.png" alt="Movie Logo" />
               <button className="menu-close-btn" onClick={toggleNav}>
