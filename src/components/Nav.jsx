@@ -24,6 +24,7 @@ const Nav = () => {
 
   useEffect(() => {
     if (searchQuery && location.pathname === '/search') {
+      console.log('searchQuery', searchQuery);
       search();
     }
   }, [searchQuery, location.pathname]);

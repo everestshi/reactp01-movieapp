@@ -415,13 +415,15 @@ select {
   height: calc(100% + 10px);
   background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0) 50%, /* Clear from the middle */
-      rgba(0, 0, 0, 1) 100% /* Fades to black at the bottom */
+      rgba(0, 0, 0, 0) 50%,
+      /* Clear from the middle */ rgba(0, 0, 0, 1) 100%
+        /* Fades to black at the bottom */
     ),
     linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.9) 0%, /* Starts black at the top */
-      rgba(0, 0, 0, 0) 20% /* Fades to clear at 10% down */
+      rgba(0, 0, 0, 0.9) 0%,
+      /* Starts black at the top */ rgba(0, 0, 0, 0) 20%
+        /* Fades to clear at 10% down */
     );
   color: white;
   padding: 20px;
@@ -505,7 +507,6 @@ select {
   cursor: pointer;
   align-self: center; /* Center vertically */
 }
-
 
 /* Add this CSS to your existing styles.css file or create a new CSS file */
 
@@ -621,7 +622,7 @@ select {
   margin: 0;
 }
 
-.thumbnail-release-date{
+.thumbnail-release-date {
   margin: 0.2rem 0 1rem 0;
 }
 
@@ -844,7 +845,7 @@ select {
   margin: auto 20px;
 }
 
-.movie-detail-title{
+.movie-detail-title {
   margin: 0 0 40px 0;
 }
 
@@ -982,6 +983,13 @@ p {
     &.next {
       right: -20px;
     }
+  }
+}
+
+#recommended-carousel-section {
+  h2 {
+    margin: 20px;
+    text-align: left;
   }
 }
 
@@ -1234,12 +1242,12 @@ p {
   .overlay-content p {
     font-size: 0.6rem;
   }
-  
+
   .thumbnail-rating {
     margin: 0;
   }
-  
-  .thumbnail-release-date{
+
+  .thumbnail-release-date {
     margin: 0.2rem 0 1rem 0;
   }
 
@@ -1570,12 +1578,12 @@ p {
   .overlay-content p {
     font-size: 0.6rem;
   }
-  
+
   .thumbnail-rating {
     margin: 0;
   }
-  
-  .thumbnail-release-date{
+
+  .thumbnail-release-date {
     margin: 0.2rem 0 1rem 0;
   }
 
@@ -1684,8 +1692,6 @@ p {
     padding-bottom: 20px;
   }
 }
-
-
 
 .about-container {
   display: flex;

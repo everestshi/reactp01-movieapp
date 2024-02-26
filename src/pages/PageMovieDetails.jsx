@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import MovieDetail from "../components/MovieDetail";
-import ThumbnailCarousel from "../components/ThumbnailCarousel";
-import { appTitle } from "../globals/globalVariables";
+import { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import MovieDetail from '../components/MovieDetail';
+import ThumbnailCarousel from '../components/ThumbnailCarousel';
+import { appTitle } from '../globals/globalVariables';
 import {
   fetchMovie,
   fetchTrailerUrl,
   fetchBannerUrl,
-  fetchRecommendedMovies,
-} from "../data/tmdb-data";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  fetchRecommendedMovies
+} from '../data/tmdb-data';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faCirclePlay as outlinePlay } from "@fortawesome/free-regular-svg-icons";
+import { faCirclePlay as outlinePlay } from '@fortawesome/free-regular-svg-icons';
 
 function PageMovieDetails() {
   const { id } = useParams();
   const [movieDetailObj, setMovieDetailObj] = useState(null);
-  const [trailerUrl, setTrailerUrl] = useState("");
-  const [bannerUrl, setBannerUrl] = useState("");
+  const [trailerUrl, setTrailerUrl] = useState('');
+  const [bannerUrl, setBannerUrl] = useState('');
   const [playTrailer, setPlayTrailer] = useState(false);
   const [recommendedMovies, setRecommendedMovies] = useState(null);
 
@@ -70,8 +70,8 @@ function PageMovieDetails() {
       );
     } else if (bannerUrl) {
       return (
-        <div className={"banner-container"}>
-          <img className={"banner"} src={bannerUrl} />
+        <div className={'banner-container'}>
+          <img className={'banner'} src={bannerUrl} />
           <FontAwesomeIcon
             icon={outlinePlay}
             className="circle-play-icon"
@@ -82,13 +82,13 @@ function PageMovieDetails() {
         </div>
       );
     } else {
-      return "";
+      return '';
     }
   };
 
   return (
     <main>
-      <div className={`banner-section ${playTrailer ? "play-trailer" : ""}`}>
+      <div className={`banner-section ${playTrailer ? 'play-trailer' : ''}`}>
         {getTrailerComponent()}
       </div>
 
@@ -104,7 +104,7 @@ function PageMovieDetails() {
           </>
         )}
       </section>
-      <section>
+      <section id="recommended-carousel-section">
         <h2>Recomended Movies:</h2>
         <div className="recommended-carousel">
           <ThumbnailCarousel movieObjList={recommendedMovies} />
