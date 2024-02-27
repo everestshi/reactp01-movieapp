@@ -113,6 +113,8 @@ function TopMoviesCarousel({ movies }) {
     <>
       <Slider {...settings}>
         {movies.map((movieObj, index) => (
+          // Check if the movie has a banner before rendering it
+    movieObj.bannerUrl && (
           <div
             key={movieObj.id}
             className={`movie-slide ${
@@ -164,7 +166,7 @@ function TopMoviesCarousel({ movies }) {
               </div>
             </div>
           </div>
-        ))}
+        )))}
       </Slider>
       <TrailerModal
         trailerUrl={trailerUrl}

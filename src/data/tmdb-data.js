@@ -25,6 +25,7 @@ export const fetchMovie = async (id) => {
   }
 };
 
+/*
 // Function to fetch popular movies
 export const fetchPopularMovies = async (page = 1) => {
   const API_URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`;
@@ -100,6 +101,140 @@ export const fetchUpcomingMovies = async () => {
     return [];
   }
 };
+*/
+
+// Function to fetch popular movies
+export const fetchPopularMovies = async (limit = 24) => {
+  let page = 1;
+  let fetchedMovies = [];
+
+  try {
+    while (fetchedMovies.length < limit) {
+      const API_URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`;
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      const movies = data.results.filter((movie) => movie.poster_path);
+      fetchedMovies = [...fetchedMovies, ...movies.slice(0, limit - fetchedMovies.length)];
+
+      if (data.page < data.total_pages) {
+        page++;
+      } else {
+        break;
+      }
+    }
+
+    return fetchedMovies;
+  } catch (error) {
+    console.error('Error fetching popular movies:', error);
+    return [];
+  }
+};
+
+// Function to fetch top-rated movies
+export const fetchTopRatedMovies = async (limit = 24) => {
+  let page = 1;
+  let fetchedMovies = [];
+
+  try {
+    while (fetchedMovies.length < limit) {
+      const API_URL = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`;
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      const movies = data.results.filter((movie) => movie.poster_path);
+      fetchedMovies = [...fetchedMovies, ...movies.slice(0, limit - fetchedMovies.length)];
+
+      if (data.page < data.total_pages) {
+        page++;
+      } else {
+        break;
+      }
+    }
+
+    return fetchedMovies;
+  } catch (error) {
+    console.error('Error fetching top-rated movies:', error);
+    return [];
+  }
+};
+
+// Function to fetch now playing movies
+export const fetchNowPlayingMovies = async (limit = 24) => {
+  let page = 1;
+  let fetchedMovies = [];
+
+  try {
+    while (fetchedMovies.length < limit) {
+      const API_URL = `${BASE_URL}/movie/now_playing?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}`;
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      const movies = data.results.filter((movie) => movie.poster_path);
+      fetchedMovies = [...fetchedMovies, ...movies.slice(0, limit - fetchedMovies.length)];
+
+      if (data.page < data.total_pages) {
+        page++;
+      } else {
+        break;
+      }
+    }
+
+    return fetchedMovies;
+  } catch (error) {
+    console.error('Error fetching now playing movies:', error);
+    return [];
+  }
+};
+
+// Function to fetch upcoming movies
+export const fetchUpcomingMovies = async (limit = 24) => {
+  let page = 1;
+  let fetchedMovies = [];
+
+  try {
+    while (fetchedMovies.length < limit) {
+      const API_URL = `${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=${LANGUAGE}&page=${page}&region=US&primary_release_date.gte=${new Date().toISOString().split('T')[0]}`;
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      const movies = data.results.filter((movie) => movie.poster_path);
+
+      // Filter out movies without posters
+      const moviesWithPosters = movies.filter((movie) => movie.poster_path);
+      fetchedMovies = [...fetchedMovies, ...moviesWithPosters.slice(0, limit - fetchedMovies.length)];
+
+      if (data.page < data.total_pages) {
+        page++;
+      } else {
+        break;
+      }
+    }
+
+    return fetchedMovies;
+  } catch (error) {
+    console.error('Error fetching upcoming movies:', error);
+    return [];
+  }
+};
+
+
 
 // Function to search movies by query (title)
 export const searchMovies = async (query) => {

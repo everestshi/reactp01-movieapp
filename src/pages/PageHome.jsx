@@ -28,7 +28,7 @@ function PageHome() {
   const [movies, setMovies] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('popular');
   const [searchQuery, setSearchQuery] = useState('');
-  const [displayCount, setDisplayCount] = useState(12);
+  //const [displayCount, setDisplayCount] = useState(12);
   const [totalMoviesCount, setTotalMoviesCount] = useState(0);
   const [previousCategory, setPreviousCategory] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -45,13 +45,13 @@ function PageHome() {
 
   useEffect(() => {
     const getMovies = async () => {
-      let moviesToFetch = [];
+      //let moviesToFetch = [];
       let fetchedMovies = [];
 
       if (searchQuery) {
         fetchedMovies = await searchMovies(searchQuery);
         setTotalMoviesCount(fetchedMovies.length);
-        moviesToFetch = fetchedMovies.slice(0, displayCount);
+        //moviesToFetch = fetchedMovies.slice(0, displayCount);
       } else {
         if (selectedCategory === 'popular') {
           fetchedMovies = await fetchPopularMovies();
@@ -63,19 +63,21 @@ function PageHome() {
           fetchedMovies = await fetchUpcomingMovies();
         }
         setTotalMoviesCount(fetchedMovies.length);
-        moviesToFetch = fetchedMovies.slice(0, displayCount);
+        //moviesToFetch = fetchedMovies.slice(0, displayCount);
       }
 
       if (selectedCategory !== previousCategory) {
         // Reset movies back to 12 when the category changes
-        setDisplayCount(12);
-        moviesToFetch = moviesToFetch.slice(0, displayCount);
+        //setDisplayCount(12);
+        //moviesToFetch = moviesToFetch.slice(0, displayCount);
         setPreviousCategory(selectedCategory); // Update the previous category
       }
 
       // Fetch banner URLs for each movie
       const moviesWithBanners = await Promise.all(
-        moviesToFetch.map(async (movie) => {
+        //moviesToFetch.map(async (movie) => {
+        fetchedMovies.map(async (movie) => {
+
           const bannerUrl = await fetchBannerUrl(movie.id);
           return { ...movie, bannerUrl };
         })
@@ -85,7 +87,7 @@ function PageHome() {
     };
 
     getMovies();
-  }, [selectedCategory, searchQuery, displayCount, previousCategory]);
+  }, [selectedCategory, searchQuery, /*displayCount,*/ previousCategory]);
 
   useEffect(() => {
     const remaining = categories.filter(
@@ -123,19 +125,19 @@ function PageHome() {
     generateSliders();
   }, [remainingCategories]);
 
-  const handleDisplayMore = () => {
+  /*const handleDisplayMore = () => {
     // Increment the display count to show more movies
     setDisplayCount(displayCount + 12);
-  };
+  };*/
 
-  const displayMoreButton =
+  /*const displayMoreButton =
     totalMoviesCount > displayCount ? (
       <div className="centered">
         <button onClick={handleDisplayMore} className="display-more-btn">
           Display More
         </button>
       </div>
-    ) : null;
+    ) : null;*/
 
   const categoryDropDownMenu = (
     <div className="filters">
@@ -195,7 +197,7 @@ function PageHome() {
           {categoryDropDownMenu}
         </div>
         {movieList}
-        {displayMoreButton}
+        {/* {displayMoreButton} */}
         <TrailerModal
           trailerUrl={trailerUrl}
           showModal={showModal}
