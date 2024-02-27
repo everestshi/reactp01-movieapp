@@ -105,7 +105,7 @@ function PageMovieDetails() {
         )}
       </section>
       <section id="recommended-carousel-section">
-        <h2>Recomended Movies:</h2>
+        <h2>Recomended Movies</h2>
         <div className="recommended-carousel">
           <ThumbnailCarousel movieObjList={recommendedMovies} />
         </div>
