@@ -107,6 +107,7 @@ export const fetchUpcomingMovies = async () => {
 export const fetchPopularMovies = async (limit = 24) => {
   let page = 1;
   let fetchedMovies = [];
+  let uniqueMovieIds = new Set(); // Set to track unique movie IDs
 
   try {
     while (fetchedMovies.length < limit) {
@@ -118,7 +119,8 @@ export const fetchPopularMovies = async (limit = 24) => {
       }
 
       const data = await response.json();
-      const movies = data.results.filter((movie) => movie.poster_path);
+      const movies = data.results.filter((movie) => movie.poster_path && !uniqueMovieIds.has(movie.id)); // Check if movie ID is unique
+      movies.forEach(movie => uniqueMovieIds.add(movie.id)); // Add movie IDs to the set
       fetchedMovies = [...fetchedMovies, ...movies.slice(0, limit - fetchedMovies.length)];
 
       if (data.page < data.total_pages) {
@@ -139,6 +141,7 @@ export const fetchPopularMovies = async (limit = 24) => {
 export const fetchTopRatedMovies = async (limit = 24) => {
   let page = 1;
   let fetchedMovies = [];
+  let uniqueMovieIds = new Set(); // Set to track unique movie IDs
 
   try {
     while (fetchedMovies.length < limit) {
@@ -150,7 +153,8 @@ export const fetchTopRatedMovies = async (limit = 24) => {
       }
 
       const data = await response.json();
-      const movies = data.results.filter((movie) => movie.poster_path);
+      const movies = data.results.filter((movie) => movie.poster_path && !uniqueMovieIds.has(movie.id)); // Check if movie ID is unique
+      movies.forEach(movie => uniqueMovieIds.add(movie.id));
       fetchedMovies = [...fetchedMovies, ...movies.slice(0, limit - fetchedMovies.length)];
 
       if (data.page < data.total_pages) {
@@ -159,7 +163,7 @@ export const fetchTopRatedMovies = async (limit = 24) => {
         break;
       }
     }
-
+    console.log(fetchedMovies.length)
     return fetchedMovies;
   } catch (error) {
     console.error('Error fetching top-rated movies:', error);
@@ -171,6 +175,7 @@ export const fetchTopRatedMovies = async (limit = 24) => {
 export const fetchNowPlayingMovies = async (limit = 24) => {
   let page = 1;
   let fetchedMovies = [];
+  let uniqueMovieIds = new Set(); // Set to track unique movie IDs
 
   try {
     while (fetchedMovies.length < limit) {
@@ -182,7 +187,8 @@ export const fetchNowPlayingMovies = async (limit = 24) => {
       }
 
       const data = await response.json();
-      const movies = data.results.filter((movie) => movie.poster_path);
+      const movies = data.results.filter((movie) => movie.poster_path && !uniqueMovieIds.has(movie.id)); // Check if movie ID is unique
+      movies.forEach(movie => uniqueMovieIds.add(movie.id));
       fetchedMovies = [...fetchedMovies, ...movies.slice(0, limit - fetchedMovies.length)];
 
       if (data.page < data.total_pages) {
@@ -203,6 +209,7 @@ export const fetchNowPlayingMovies = async (limit = 24) => {
 export const fetchUpcomingMovies = async (limit = 24) => {
   let page = 1;
   let fetchedMovies = [];
+  let uniqueMovieIds = new Set(); // Set to track unique movie IDs
 
   try {
     while (fetchedMovies.length < limit) {
@@ -214,11 +221,12 @@ export const fetchUpcomingMovies = async (limit = 24) => {
       }
 
       const data = await response.json();
-      const movies = data.results.filter((movie) => movie.poster_path);
-
-      // Filter out movies without posters
-      const moviesWithPosters = movies.filter((movie) => movie.poster_path);
-      fetchedMovies = [...fetchedMovies, ...moviesWithPosters.slice(0, limit - fetchedMovies.length)];
+      const movies = data.results.filter(async (movie) => {
+        return (movie.poster_path || (await fetchBannerUrl(movie.id))) && !uniqueMovieIds.has(movie.id);
+      });
+      
+      movies.forEach(movie => uniqueMovieIds.add(movie.id));
+      fetchedMovies = [...fetchedMovies, ...movies.slice(0, limit - fetchedMovies.length)];
 
       if (data.page < data.total_pages) {
         page++;
@@ -305,25 +313,28 @@ export const fetchBannerUrl = async (id) => {
 
     const data = await response.json();
 
-    //calculte the optimal img size to use based on viewport width
-    const viewportWidth = document.documentElement.clientWidth;
-    let imgSize = BANNER_SIZES[BANNER_SIZES.length - 1][1]; //default to biggest img size
-    for (let i = 0; i < BANNER_SIZES.length; i++) {
-      if (viewportWidth <= BANNER_SIZES[i][0]) {
-        imgSize = BANNER_SIZES[i][1];
-        break;
+    if (data.backdrops && data.backdrops.length > 0) { // Check if backdrops array exists and is not empty
+      //calculte the optimal img size to use based on viewport width
+      const viewportWidth = document.documentElement.clientWidth;
+      let imgSize = BANNER_SIZES[BANNER_SIZES.length - 1][1]; //default to biggest img size
+      for (let i = 0; i < BANNER_SIZES.length; i++) {
+        if (viewportWidth <= BANNER_SIZES[i][0]) {
+          imgSize = BANNER_SIZES[i][1];
+          break;
+        }
       }
+
+      //return the first banner url seen from the request
+      return IMG_BASE_URL + imgSize + data.backdrops[0].file_path;
+    } else {
+      return null; // No banner found
     }
-
-    //return the first banner url seen from the request
-    return IMG_BASE_URL + imgSize + data.backdrops[0].file_path;
-
-    // return data.results;
   } catch (error) {
     console.error('Error fetching movie banner url:', error);
     return null;
   }
 };
+
 
 // Function to fetch recommended movies based on movie id
 export const fetchRecommendedMovies = async (id) => {

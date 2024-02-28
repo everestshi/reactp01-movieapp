@@ -28,7 +28,7 @@ function PageHome() {
   const [movies, setMovies] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('popular');
   const [searchQuery, setSearchQuery] = useState('');
-  //const [displayCount, setDisplayCount] = useState(12);
+  const [displayCount, setDisplayCount] = useState(24);
   const [totalMoviesCount, setTotalMoviesCount] = useState(0);
   const [previousCategory, setPreviousCategory] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -68,26 +68,26 @@ function PageHome() {
 
       if (selectedCategory !== previousCategory) {
         // Reset movies back to 12 when the category changes
-        //setDisplayCount(12);
+        //setDisplayCount(24);
         //moviesToFetch = moviesToFetch.slice(0, displayCount);
         setPreviousCategory(selectedCategory); // Update the previous category
       }
 
+      const moviesToFetch = fetchedMovies.slice(0, displayCount); // Fetch only the first 24 movies
+
       // Fetch banner URLs for each movie
       const moviesWithBanners = await Promise.all(
-        //moviesToFetch.map(async (movie) => {
-        fetchedMovies.map(async (movie) => {
-
+        moviesToFetch.map(async (movie) => {
+        //fetchedMovies.map(async (movie) => {
           const bannerUrl = await fetchBannerUrl(movie.id);
           return { ...movie, bannerUrl };
         })
       );
-
-      setMovies(moviesWithBanners);
+      setMovies([...moviesWithBanners]);
     };
 
     getMovies();
-  }, [selectedCategory, searchQuery, /*displayCount,*/ previousCategory]);
+  }, [selectedCategory, searchQuery, displayCount, previousCategory]);
 
   useEffect(() => {
     const remaining = categories.filter(
